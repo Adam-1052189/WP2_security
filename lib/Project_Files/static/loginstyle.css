@@ -22,6 +22,7 @@ body{
     border-radius: 10px;
     height: 500px;
 
+
 }
 .center h1{
     text-align: center;
@@ -40,6 +41,7 @@ form .txt_field{
     position: relative;
     padding: 5px 3px;
     height: 40px;
+    color: #041F74;
 }
 .txt_field input{
     width: 100%;
@@ -62,7 +64,7 @@ form .txt_field{
 .txt_field input:focus ~ label,
 .txt_field input:valid ~ label{
     top: 6px;
-    color: silver;
+    color: transparent;
 }
 .txt_field label{
     position: absolute;
@@ -75,9 +77,10 @@ form .txt_field{
 }
 .logo{
     position: absolute;
-    top: 10%;
-    left: 50%;
+    top: 15%;
+    left: 52%;
     transform: translate(-50%, -50%);
+    scale: 150%;
 }
 .l_button{
     background-color: #3DBB57;
