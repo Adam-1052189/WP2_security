@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Nunito';
+    src: url("../static/fonts/Nunito-Regular.ttf");
+    src: url("../static/fonts/Nunito-Bold.ttf")
+}
+
+
 nav {
   background-color: #004DF5;
 }
@@ -5,12 +12,27 @@ nav {
 .Test-Correct-button-bar-item {
   color: white;
   font-size: 30px;
-  font-family: Nunito, sans-serif;
+  font-family: 'Nunito';
+  font-weight: bold;
   text-decoration: none;
+  color: #8ae89d;
+  border-radius: 10px;
 }
 
 p {
   text-align: center;
   font-size: 20px;
-  font-family: Nunito, sans-serif;
+  font-family: 'Nunito';
+}
+
+.footer {
+  font-family: 'Nunito';
+  font-size: 14px;
+  text-align: center;
+
+}
+.Footer-opties {
+  list-style-type: none;
+  color: red;
+
 }

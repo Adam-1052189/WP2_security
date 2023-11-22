@@ -10,3 +10,5 @@ https://www.w3schools.com/css/tryit.asp?filename=trycss_default (kleur, soort, g
 https://getcssscan.com/blog/how-to-remove-underline-from-link-css (lijntje onder tekst verwijderen CSS)
 https://www.w3schools.com/tags/tag_br.asp (Enter en schuingedrukt in tekst HTML)
 https://www.w3schools.com/html/html_favicon.asp (venster icoon HTML)
+https://github.com/Rac-Software-Development/workshop-css (bolletjes weghalen, tekst dikgedrukt CSS)
+https://web-eau.net/en/blog/10-best-footer-html-css-snippets (footer contact gegevens HTML)
