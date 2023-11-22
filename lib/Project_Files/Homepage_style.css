@@ -5,5 +5,12 @@ nav {
 .Test-Correct-button-bar-item {
   color: white;
   font-size: 30px;
-  font-family: nunito;
+  font-family: Nunito, sans-serif;
+  text-decoration: none;
+}
+
+p {
+  text-align: center;
+  font-size: 20px;
+  font-family: Nunito, sans-serif;
 }
