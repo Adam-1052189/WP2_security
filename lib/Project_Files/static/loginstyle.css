@@ -1,9 +1,16 @@
+@font-face {
+    font-family: 'Nunito';
+    src: url("../static/fonts/Nunito-Regular.ttf");
+    src: url("../static/fonts/Nunito-Bold.ttf")
+}
+
 body{
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Nunito';
     height: 100vh;
     background-color: #F0F2F5;
+    font-weight: bolder;
 }
 .center{
     position: absolute;
@@ -76,6 +83,7 @@ form .txt_field{
     background-color: #3DBB57;
     border: none;
     text-align: center;
+    font-family: 'Nunito';
     font-size: 20px;
     font-weight: bold;
     color: white;
