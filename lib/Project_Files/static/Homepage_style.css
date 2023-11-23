@@ -51,6 +51,7 @@ p {
   list-style-type: none;
   color: red;
   float: right;
+  margin-right: 35px;
   box-sizing: border-box;
   text-align: center;
 }
