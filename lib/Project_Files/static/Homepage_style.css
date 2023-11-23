@@ -42,12 +42,27 @@ p {
   font-family: 'Nunito';
   font-size: 14px;
   text-align: center;
+  text-decoration: none;
+  width: 20%;
+  margin: 0 auto;
 
 }
 .Footer-opties {
   list-style-type: none;
   color: red;
+  float: right;
+  box-sizing: border-box;
+  text-align: center;
 }
+
+.Footer-opties a {
+  list-style-type: none;
+  color: black;
+  text-decoration: none;
+
+
+}
+
 .Test-Correct-button-bar-item:hover{
     color: #041F74;
 }
