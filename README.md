@@ -12,3 +12,7 @@ https://www.w3schools.com/tags/tag_br.asp (Enter en schuingedrukt in tekst HTML)
 https://www.w3schools.com/html/html_favicon.asp (venster icoon HTML)
 https://github.com/Rac-Software-Development/workshop-css (bolletjes weghalen, tekst dikgedrukt CSS)
 https://web-eau.net/en/blog/10-best-footer-html-css-snippets (footer contact gegevens HTML)
+
+Bronvemelding (Niels)
+https://www.youtube.com/watch?v=qz0aGYrrlhU (Basis HTML + handige toevoegingen)
+https://www.youtube.com/watch?v=jEuvbVVkcT0 (Schaduw toevoegen aan objecten in CSS)
