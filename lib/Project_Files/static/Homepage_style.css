@@ -3,7 +3,9 @@
     src: url("../static/fonts/Nunito-Regular.ttf");
     src: url("../static/fonts/Nunito-Bold.ttf")
 }
-
+.logo-test-correct {
+  margin-left: 15%;
+}
 
 nav {
   background-color: #004DF5;

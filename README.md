@@ -14,6 +14,8 @@ https://github.com/Rac-Software-Development/workshop-css (bolletjes weghalen, te
 https://web-eau.net/en/blog/10-best-footer-html-css-snippets (footer contact gegevens HTML)
 https://www.w3schools.com/cssref/pr_margin.php (tussenruimtes in elementen CSS)
 https://hetinternetookuwzaak.be/praktische-tips/detail/hoe-telefoonnummer-en-adres-op-uw-site-aanklikbaar-maken (footer linken naar contactmogelijkheden HTML)
+https://www.w3schools.com/cssref/pr_margin-left.php (logo van positie veranderen % CSS)
+
 
 Bronvemelding (Niels)
 https://www.youtube.com/watch?v=qz0aGYrrlhU (Basis HTML + handige toevoegingen)
