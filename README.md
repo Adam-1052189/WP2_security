@@ -17,6 +17,9 @@ https://hetinternetookuwzaak.be/praktische-tips/detail/hoe-telefoonnummer-en-adr
 https://www.w3schools.com/cssref/pr_margin-left.php (logo van positie veranderen % CSS)
 https://www.w3schools.com/tags/tag_button.asp (button HTML/CSS)
 https://www.tutorialspoint.com/how-do-you-edit-a-button-size-in-html#:~:text=Using%20CSS%20styles,-With%20the%20help&text=Padding%20%E2%88%92%20The%20padding%20property%20determines,made%20smaller%20by%20reducing%20it. (padding CSS)
+https://www.w3schools.com/howto/howto_css_fixed_menu.asp (om log-in button/logo altijd zichtbaar te hebben CSS)
+https://www.w3schools.com/html/html_layout.asp (header HTML)
+https://www.w3schools.com/css/css_max-width.asp (iets groter maken CSS)
 
 
 Bronvemelding (Niels)
