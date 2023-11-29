@@ -6,10 +6,10 @@ app = Flask(__name__)
 @app.route("/home")
 def home():
     return render_template('homepage.html')
-@app.route("/login")
+@app.route("/login", methods=['GET', 'POST'])
 def login():
     return render_template('login_page.html')
-@app.route("/overzicht")
+@app.route("/overzicht", methods=['GET','POST'])
 def notities():
     return render_template('overzicht_notities.html')
 
