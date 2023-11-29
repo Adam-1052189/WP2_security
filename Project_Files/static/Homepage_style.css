@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Nunito';
-    src: url("../static/fonts/Nunito-Regular.ttf");
-    src: url("../static/fonts/Nunito-Bold.ttf")
+    src: url("Nunito-Regular.ttf");
+    src: url("Nunito-Bold.ttf")
 }
 .logo-test-correct {
   margin-left: 15%;
