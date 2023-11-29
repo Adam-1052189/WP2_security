@@ -17,7 +17,6 @@ def notities():
 def notitieaanmaken():
     return render_template('maaknotitie.html')
 
-
 if __name__ == "__main__":
     app.debug = True
     app.run()

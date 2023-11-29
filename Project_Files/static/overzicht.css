@@ -3,22 +3,13 @@
     src: url("../static/fonts/Nunito-Regular.ttf");
     src: url("../static/fonts/Nunito-Bold.ttf")
 }
-
-.logo-test-correct {
-  margin-left: 15%;
-}
-
-@font-face {
-    font-family: 'Nunito';
-    src: url("../static/fonts/Nunito-Regular.ttf");
-    src: url("../static/fonts/Nunito-Bold.ttf")
-}
 .logo-test-correct {
   margin-left: 15%;
 }
 .logo-test-correct-homepage {
   margin-left: 15%;
   position: fixed;
+
 }
 
 nav {
