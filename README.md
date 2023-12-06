@@ -20,6 +20,7 @@ https://www.tutorialspoint.com/how-do-you-edit-a-button-size-in-html#:~:text=Usi
 https://www.w3schools.com/howto/howto_css_fixed_menu.asp (om log-in button/logo altijd zichtbaar te hebben CSS)
 https://www.w3schools.com/html/html_layout.asp (header HTML)
 https://www.w3schools.com/css/css_max-width.asp (iets groter maken CSS)
+https://www.w3schools.com/html/html_images.asp (foto linken html)
 
 
 Bronvemelding (Niels)
