@@ -27,3 +27,8 @@ Bronvemelding (Niels)
 https://www.youtube.com/watch?v=qz0aGYrrlhU (Basis HTML + handige toevoegingen)
 https://www.youtube.com/watch?v=jEuvbVVkcT0 (Schaduw toevoegen aan objecten in CSS)
 https://getbootstrap.com/docs/5.3/components/navbar/#nav (Search balk in Notities)
+https://www.digitalocean.com/community/tutorials/how-to-use-web-forms-in-a-flask-application
+
+
+Bronvermelding (Quinten)
+https://www.digitalocean.com/community/tutorials/how-to-use-web-forms-in-a-flask-application
