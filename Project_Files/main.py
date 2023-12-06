@@ -19,8 +19,8 @@ messages = [{'title': 'Notitie Naam',
              'content': 'Notitie Inhoud'}
             ]
 
-@app.route("/notitie")
-def notitieaanmaken():
+@app.route('/create/', methods=('GET', 'POST'))
+def create():
     return render_template('maaknotitie.html')
 
 if __name__ == "__main__":

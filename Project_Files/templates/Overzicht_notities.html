@@ -20,8 +20,8 @@
             <input class="form-controle" type="search" placeholder="Search">
             <button class="button-search" type="submit">Search</button>
             <a href="/" class="Test-Correct-button-bar-item-notities"> ← Home</a>
-            <button class="button-nieuwe-notitie">Nieuwe Notitie</button>
-            <button class="button-Filter">Filter</button>
+            <a href="/create" class="button-nieuwe-notitie">Nieuwe Notitie<a>
+                <button class="button-Filter">Filter</button>
         </form>
     </div>
 </nav>
@@ -29,7 +29,7 @@
 <div class="content">
     {% block content%} {% endblock %}
 </div>
-<h1>Notities</h1>
+
 {% for message in messages %}
 <div class='message'>
     <h3>{{ message['title'] }}</h3>
