@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Test-Correct</title>
+    <title>{% block title %} {% endblock %} Notities - Test-Correct</title>
     <link rel="stylesheet" href="../static/Homepage_style.css" type="text/css">
     <link rel="icon" type="image/x-icon" href="https://www.test-correct.nl/hubfs/3396b8f7-06dd-422d-984e-483680fc7791.png">
     <div class="logo-test-correct">
-        <a href="Homepage.html">
+        <a href="/home">
             <img src="https://www.test-correct.nl/hubfs/raw_assets/public/test-correct/images/testcorrect-logo.svg" class="nav__logo-large" alt="Test Correct logo" >
         </a>
     </div>
@@ -19,18 +19,22 @@
         <form class="search-input" role="search">
             <input class="form-controle" type="search" placeholder="Search">
             <button class="button-search" type="submit">Search</button>
-            <a href="Homepage.html" class="Test-Correct-button-bar-item-notities"> ← Home</a>
+            <a href="/home" class="Test-Correct-button-bar-item-notities"> ← Home</a>
             <button class="button-nieuwe-notitie">Nieuwe Notitie</button>
             <button class="button-Filter">Filter</button>
         </form>
     </div>
 </nav>
-<div class="Layout_Notities">
-    <h3>Notities</h3>
-    <h3>Docentnaam</h3>
-    <h3>Aanmaakdatum</h3>
-    <h3>Bewerken</h3>
+<hr>
+<div class="content">
+    {% block content%} {% endblock %}
 </div>
-
+<h1>Notities</h1>
+{% for message in messages %}
+<div class='message'>
+    <h3>{{ message['title'] }}</h3>
+    <p>{{ message['content'] }}</p>
+</div>
+{% endfor %}
 </body>
 </html>

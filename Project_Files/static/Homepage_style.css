@@ -26,6 +26,24 @@
   font-weight: bold;
 }
 
+.message {
+  padding: 10px;
+  margin: 5px;
+  font-family: 'Nunito';
+  background-color: #f3f3f3
+}
+
+h1 {
+  font-family: 'Nunito';
+
+}
+nav a {
+  color: #d64161;
+  font-size: 3em;
+  margin-left: 50px;
+  text-decoration: none;}
+
+
 
 nav {
   background-color: #004DF5;
