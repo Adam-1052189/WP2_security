@@ -11,7 +11,13 @@ def login():
     return render_template('login_page.html')
 @app.route("/overzicht", methods=['GET','POST'])
 def notities():
-    return render_template('overzicht_notities.html')
+    return render_template('overzicht_notities.html', messages=messages)
+
+messages = [{'title': 'Notitie Naam',
+             'content': 'Notitie Inhoud'},
+            {'title': 'Notitie Naam',
+             'content': 'Notitie Inhoud'}
+            ]
 
 @app.route("/notitie")
 def notitieaanmaken():

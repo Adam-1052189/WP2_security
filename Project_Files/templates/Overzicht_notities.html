@@ -25,12 +25,17 @@
         </form>
     </div>
 </nav>
-<div class="Layout_Notities">
-    <h3>Notities</h3>
-    <h3>Docentnaam</h3>
-    <h3>Aanmaakdatum</h3>
-    <h3>Bewerken</h3>
+<hr>
+<div class="content">
+    {% block content%} {% endblock %}
 </div>
+<h1>Notities</h1>
+{% for message in messages %}
+<div class='message'>
+    <h3>{{ message['title'] }}</h3>
+    <p>{{ message['content'] }}</p>
+</div>
+{% endfor %}
 
 </body>
 </html>
