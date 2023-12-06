@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, url_for
 app = Flask(__name__)
 
 @app.route("/")
+@app.route("/home")
 def home():
     return render_template('homepage.html')
 @app.route("/login", methods=['GET', 'POST'])
