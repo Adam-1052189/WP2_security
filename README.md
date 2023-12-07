@@ -21,6 +21,7 @@ https://www.w3schools.com/howto/howto_css_fixed_menu.asp (om log-in button/logo 
 https://www.w3schools.com/html/html_layout.asp (header HTML)
 https://www.w3schools.com/css/css_max-width.asp (iets groter maken CSS)
 https://www.w3schools.com/html/html_images.asp (foto linken html)
+https://www.w3schools.com/css/css_dimension.asp (hoogte verkleinen van element CSS)
 
 
 Bronvemelding (Niels)

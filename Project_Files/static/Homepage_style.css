@@ -168,7 +168,8 @@ section h3 {
 section p {
   font-size: 20px;
   font-family: 'Nunito';
-  margin-left: 25%;
+  max-width: 70%;
+  margin: 0 auto;
 }
 
 .Layout_Notities {
@@ -186,13 +187,20 @@ section p {
 .probeer-nu {
   background-color: #2E6FFB;
   text-align: center;
+  width: 70%;
+  margin-left: 15%;
+  border-radius: 10px;
+  height: 230px;
 }
 .probeer-nu h2,h4 {
   color: #FFFFFF;
   font-family: 'Nunito';
+  text-align: left;
+  margin-left: 2%;
+  padding-top: 20px;
 }
 .button-probeer-nu {
-  top: -32px;
+  top: -100px;
   position: relative;
   background-color:  #3DBB57;
   border: none;
@@ -206,7 +214,7 @@ section p {
   font-weight: bold;
 }
 .button-boek-een-demonstratie {
-  top: -32px;
+  top: -100px;
   position: relative;
   background-color:  #3DBB57;
   border: none;
@@ -218,6 +226,11 @@ section p {
   color: #FFFFFF;
   padding: 0px 30px;
   font-weight: bold;
+}
+.foto-apparaten {
+  margin-left: 45%;
+  top: -69px;
+  position: relative;
 }
 .footer {
   font-family: 'Nunito';
