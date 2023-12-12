@@ -22,6 +22,9 @@ messages = [{'title': 'Notitie Naam',
 @app.route('/create/', methods=('GET', 'POST'))
 def create():
     return render_template('maaknotitie.html')
+@app.route("/contactformulier", methods=['GET', 'POST'])
+def contactformulier():
+    return render_template('contactformulier.html')
 
 if __name__ == "__main__":
     app.debug = True

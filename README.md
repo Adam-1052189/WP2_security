@@ -22,6 +22,7 @@ https://www.w3schools.com/html/html_layout.asp (header HTML)
 https://www.w3schools.com/css/css_max-width.asp (iets groter maken CSS)
 https://www.w3schools.com/html/html_images.asp (foto linken html)
 https://www.w3schools.com/css/css_dimension.asp (hoogte verkleinen van element CSS)
+https://www.programiz.com/html/form (formulier HTML)
 
 
 Bronvemelding (Niels)
