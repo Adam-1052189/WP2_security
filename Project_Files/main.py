@@ -1,6 +1,7 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request, flash
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret key'
 
 @app.route("/")
 @app.route("/home")
@@ -21,6 +22,18 @@ messages = [{'title': 'Notitie Naam',
 
 @app.route('/create/', methods=('GET', 'POST'))
 def create():
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+
+        if not title:
+            flash('Titel is vereist!')
+        elif not content:
+            flash('Inhoud is vereist!')
+        else:
+            messages.append({'title': title, 'content': content})
+            return redirect(url_for('create'))
+
     return render_template('maaknotitie.html')
 
 if __name__ == "__main__":
