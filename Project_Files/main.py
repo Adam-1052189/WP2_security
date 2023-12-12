@@ -14,10 +14,7 @@ def login():
 def notities():
     return render_template('overzicht_notities.html', messages=messages)
 
-messages = [{'title': 'Notitie Naam',
-             'content': 'Notitie Inhoud'},
-            {'title': 'Notitie Naam',
-             'content': 'Notitie Inhoud'}
+messages = [
             ]
 
 @app.route('/create/', methods=('GET', 'POST'))
@@ -25,7 +22,8 @@ def create():
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
-        messages.append({'title': title, 'content': content})
+        vakken = request.form['vakken']
+        messages.append({'title': title, 'content': content, 'vakken': vakken})
         return redirect(url_for('notities'))
 
     return render_template('maaknotitie.html')
