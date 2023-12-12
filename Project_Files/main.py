@@ -25,14 +25,8 @@ def create():
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
-
-        if not title:
-            flash('Titel is vereist!')
-        elif not content:
-            flash('Inhoud is vereist!')
-        else:
-            messages.append({'title': title, 'content': content})
-            return redirect(url_for('create'))
+        messages.append({'title': title, 'content': content})
+        return redirect(url_for('notities'))
 
     return render_template('maaknotitie.html')
 

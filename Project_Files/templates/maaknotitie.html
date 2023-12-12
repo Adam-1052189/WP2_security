@@ -3,17 +3,17 @@
 {% block content %}
 <h1>{% block title %} Nieuwe Notitie {% endblock %}</h1>
 <form method="post">
-    <label for= "title">Title</label>
+    <label for= "title">Titel</label>
     <br>
     <input type="text" name="title"
-               placeholder="title"
+               placeholder="Titel"
                value="{{ request.form['title'] }}"> </input>
     <br>
 
-    <label for='content'>content</label>
+    <label for='content'>Inhoud notitie</label>
     <br>
     <textarea name="content"
-                  placeholder="content"
+                  placeholder="Inhoud"
                   rows="15"
                   cols="60"
                   >{{ request.form['content'] }}</textarea>
