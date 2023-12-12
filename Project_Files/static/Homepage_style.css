@@ -191,6 +191,7 @@ section p {
   margin-left: 15%;
   border-radius: 10px;
   height: 230px;
+  position: relative;
 }
 .probeer-nu h2,h4 {
   color: #FFFFFF;
@@ -200,8 +201,7 @@ section p {
   padding-top: 20px;
 }
 .button-probeer-nu {
-  top: -100px;
-  position: relative;
+  margin-top: 43px;
   background-color:  #3DBB57;
   border: none;
   font-size: 16px;
@@ -212,9 +212,12 @@ section p {
   color: #FFFFFF;
   padding: 0px 30px;
   font-weight: bold;
+  position: absolute;
+  left: 2%;
+  margin-right: 20%;
 }
 .button-boek-een-demonstratie {
-  top: -100px;
+  margin-top: 43px;
   position: relative;
   background-color:  #3DBB57;
   border: none;
@@ -226,35 +229,38 @@ section p {
   color: #FFFFFF;
   padding: 0px 30px;
   font-weight: bold;
+  position: absolute;
+  left: 15%;
 }
 .foto-apparaten {
-  margin-left: 45%;
-  top: -69px;
+  right: 2%;
+  top: 70px;
   position: relative;
+  position: absolute;
 }
 .footer {
   font-family: 'Nunito';
   font-size: 14px;
   text-align: center;
   text-decoration: none;
-  width: 20%;
-  margin: 0 auto;
-  background-color:  #F0F2F5;
-  padding: 55px 690px;
+  background-color: #F0F2F5;
   color: black;
+  padding: 20px;
+  margin: 0;
 }
-.Footer-opties {
+.footer-opties {
   list-style-type: none;
-  float: right;
-  margin-right: 35px;
-  box-sizing: border-box;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
 }
-.Footer-opties a {
-  list-style-type: none;
-  color: black;
+.footer-opties li {
+  margin-right: 20px;
+}
+.footer-opties a {
   text-decoration: none;
-  font-family: 'Nunito';
+  color: black;
 }
 .Test-Correct-button-bar-item-notities:hover{
     color: #041F74;
