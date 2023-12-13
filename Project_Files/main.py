@@ -9,31 +9,25 @@ app.config['SECRET_KEY'] = 'secret key'
 def home():
     return render_template('homepage.html')
 
-
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
 
-        if DB.login(username,password):
+        if DB.login(username, password):
             return redirect('/overzicht')
-        
         else:
-            error = 'ben je kaulo dom bro'
-            return render_template('login_page.html',error = error)
+            error = 'Invalid username or password. Please try again.'
+            return render_template('login_page.html', error=error)
     return render_template('login_page.html')
 
-
-
-
-@app.route("/overzicht", methods=['GET','POST'])
+@app.route("/overzicht", methods=['GET', 'POST'])
 def notities():
     return render_template('overzicht_notities.html', messages=messages)
 
-messages = [
+messages=[
             ]
-
 @app.route('/create/', methods=('GET', 'POST'))
 def create():
     if request.method == 'POST':
@@ -42,7 +36,6 @@ def create():
         vakken = request.form['vakken']
         messages.append({'title': title, 'content': content, 'vakken': vakken})
         return redirect(url_for('notities'))
-
     return render_template('maaknotitie.html')
 
 if __name__ == "__main__":
