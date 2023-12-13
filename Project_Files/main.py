@@ -27,6 +27,10 @@ def create():
         return redirect(url_for('notities'))
 
     return render_template('maaknotitie.html')
+@app.route('/bewerk')
+def edit():
+    return render_template('edit_note.html')
+
 
 if __name__ == "__main__":
     app.debug = True

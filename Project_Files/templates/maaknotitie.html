@@ -1,6 +1,19 @@
-{% extends 'Overzicht_notities.html' %}
+<head>
+        <link rel="stylesheet" href="../static/maaknotitie.css" type="text/css">
+</head>
+ {% include 'navbar1.html' %}
+<nav class="Test-Correct-button-bar-item">
+    <div class="search-container">
+        <form class="search-input" role="search">
+            <input class="form-controle" type="search" placeholder="Search">
+            <button class="button-search" type="submit">Search</button>
+            <a href="/overzicht" class="Test-Correct-button-bar-item-notities"> ← Home</a>
+            <a href="/create" class="button-nieuwe-notitie">Nieuwe Notitie<a>
+                <button class="button-Filter">Filter</button>
+        </form>
+    </div>
+</nav>
 
-{% block content %}
 <h1>{% block title %} Nieuwe Notitie {% endblock %}</h1>
 <form method="post">
     <label for= "title">Titel</label>
@@ -28,4 +41,3 @@
     <br>
     <button type="submit">Toevoegen</button>
 </form>
-{% endblock %}
