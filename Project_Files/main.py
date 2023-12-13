@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request, flash
+import DB
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret key'
@@ -7,9 +8,25 @@ app.config['SECRET_KEY'] = 'secret key'
 @app.route("/home")
 def home():
     return render_template('homepage.html')
+
+
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        if DB.login(username,password):
+            return redirect('/overzicht')
+        
+        else:
+            error = 'ben je kaulo dom bro'
+            return render_template('login_page.html',error = error)
     return render_template('login_page.html')
+
+
+
+
 @app.route("/overzicht", methods=['GET','POST'])
 def notities():
     return render_template('overzicht_notities.html', messages=messages)
