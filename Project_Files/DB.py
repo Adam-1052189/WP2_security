@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('databases/testgpt.db', check_same_thread=False)
+conn = sqlite3.connect('../databases/testgpt.db', check_same_thread=False)
 
 def login(username, password):
     query = 'SELECT username, teacher_password FROM teachers WHERE username=? AND teacher_password=?;'
