@@ -4,19 +4,18 @@
         <link rel="stylesheet" href="../static/overzicht.css" type="text/css">
 </head>
 <body>
- {% include 'navbar1.html' %}
+     {% include 'navbar1.html' %}
+     {% include 'navbar2.html' %}
 
-<nav class="Test-Correct-button-bar-item">
-    <div class="search-container">
+<div class="search-container">
         <form class="search-input" role="search">
             <input class="form-controle" type="search" placeholder="Search">
             <button class="button-search" type="submit">Search</button>
-            <a href="/overzicht" class="Test-Correct-button-bar-item-notities"> ← Home</a>
-            <a href="/create" class="button-nieuwe-notitie">Nieuwe Notitie<a>
-                <button class="button-Filter">Filter</button>
+            <a href="/create" class="button-nieuwe-notitie">Nieuwe Notitie</a>
+            <button class="button-Filter">Filter</button>
         </form>
-    </div>
-</nav>
+</div>
+
 <div class="content">
     {% block content%} {% endblock %}
 </div>

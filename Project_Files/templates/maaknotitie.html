@@ -1,18 +1,9 @@
 <head>
-        <link rel="stylesheet" href="../static/maaknotitie.css" type="text/css">
+    <link rel="stylesheet" href="../static/maaknotitie.css" type="text/css">
 </head>
+
  {% include 'navbar1.html' %}
-<nav class="Test-Correct-button-bar-item">
-    <div class="search-container">
-        <form class="search-input" role="search">
-            <input class="form-controle" type="search" placeholder="Search">
-            <button class="button-search" type="submit">Search</button>
-            <a href="/overzicht" class="Test-Correct-button-bar-item-notities"> ← Home</a>
-            <a href="/create" class="button-nieuwe-notitie">Nieuwe Notitie<a>
-                <button class="button-Filter">Filter</button>
-        </form>
-    </div>
-</nav>
+ {% include 'navbar2.html' %}
 
 <h1>{% block title %} Nieuwe Notitie {% endblock %}</h1>
 <form method="post">
