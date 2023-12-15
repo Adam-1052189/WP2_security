@@ -20,11 +20,15 @@
     {% block content%} {% endblock %}
 </div>
 
-{% for message in messages %}
+{% for notes in notities %}
 <div class='notes'>
-    <p>{{ notes['date_created'] }}</p>
-    <h3>{{ notes['title'] }}</h3>
-    <p>{{ notes['note'] }}</p>
+    <p>{{ notities['date_created'] }}</p>
+    <h3>{{ notities['title'] }}</h3>
+    <p>{{ notites['note'] }}</p>
+    <p>{{notities['category_id']}}</p>
+    <p>{{notities['teacher_id']}}</p>
+    <p>{{notitites['note_source']}}</p>
+
 </div>
 {% endfor %}
 

@@ -23,11 +23,10 @@ def login():
     return render_template('login_page.html')
 
 @app.route("/overzicht", methods=['GET', 'POST'])
-def notities():
-    return render_template('overzicht_notities.html', messages=messages)
+def notes():
+    DB.notes
+    return render_template('overzicht_notities.html', notes=notes)
 
-messages=[
-            ]
 @app.route('/create/', methods=('GET', 'POST'))
 def create():
     if request.method == 'POST':
