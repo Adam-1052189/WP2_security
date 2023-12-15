@@ -15,16 +15,19 @@
     </div>
     <div class="center">
         <h1>Inloggen</b></h1>
-        <form action="/overzicht" method="POST">
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+        <form action="/login" method="POST">
             <div class="txt_field">
-                <input type="text" required>
+                <input type="text" id="username" name="username" required>
                 <span></span>
-                <label>Username</label>
+                <label for="Username">Username</label>
             </div>
             <div class="txt_field">
-                <input type="password" required>
-            <span></span>
-                <label>Password</label>
+                <input type="password" id="password" name="password" required>
+                <span></span>
+                <label for="password">Password</label>
             </div>
             <br>
             <input class="l_button" type="submit" name="submit" value="Inloggen">
