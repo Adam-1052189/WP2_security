@@ -8,10 +8,10 @@ def login(username, password):
     user = cursor.fetchone()
     return user is not None
 
-def create(title, note, vakken):
-    query1 = "INSERT INTO notes VALUES('', '{title}', '', '', '', '{note}', '{vakken}', '');"
-    cursor = conn.execute(query1, (title, note, vakken))
-    cursor.execute(query1)
+def create(title, note):
+    conn.execute('INSERT INTO notes (title, note) VALUES (?, ?)',
+                 (title, note))
     conn.commit()
+    conn.close()
 
 

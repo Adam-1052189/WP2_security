@@ -33,10 +33,8 @@ def create():
     if request.method == 'POST':
         title = request.form['title']
         note = request.form['note']
-        vakken = request.form['vakken']
 
-        if DB.create(title, note, vakken):
-            messages.append({'title': title, 'note': note, 'vakken': vakken})
+        if DB.create(title, note):
             return redirect(url_for('notities'))
     return render_template('maaknotitie.html')
 @app.route('/bewerk')

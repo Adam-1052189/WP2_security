@@ -21,10 +21,10 @@
 </div>
 
 {% for message in messages %}
-<div class='message'>
-    <h3>{{ message['title'] }}</h3>
-    <h4>{{ message['vakken'] }}</h4>
-    <p>{{ message['note'] }}</p>
+<div class='notes'>
+    <p>{{ notes['date_created'] }}</p>
+    <h3>{{ notes['title'] }}</h3>
+    <p>{{ notes['note'] }}</p>
 </div>
 {% endfor %}
 
