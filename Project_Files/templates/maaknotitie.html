@@ -22,13 +22,13 @@
         {{ request.form['vakken'] }}
     </select><br><br>
 
-    <label for='content'>Inhoud notitie</label>
+    <label for='note'>Inhoud notitie</label>
     <br>
-    <textarea name="content"
+    <textarea name="note"
                   placeholder="Inhoud"
                   rows="15"
                   cols="60"
-                  >{{ request.form['content'] }}</textarea>
+                  >{{ request.form['note'] }}</textarea>
     <br>
     <button type="submit">Toevoegen</button>
 </form>

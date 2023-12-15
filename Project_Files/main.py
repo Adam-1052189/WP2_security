@@ -32,10 +32,12 @@ messages=[
 def create():
     if request.method == 'POST':
         title = request.form['title']
-        content = request.form['content']
+        note = request.form['note']
         vakken = request.form['vakken']
-        messages.append({'title': title, 'content': content, 'vakken': vakken})
-        return redirect(url_for('notities'))
+
+        if DB.create(title, note, vakken):
+            messages.append({'title': title, 'note': note, 'vakken': vakken})
+            return redirect(url_for('notities'))
     return render_template('maaknotitie.html')
 @app.route('/bewerk')
 def edit():
