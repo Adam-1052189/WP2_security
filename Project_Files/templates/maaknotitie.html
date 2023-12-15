@@ -23,5 +23,18 @@
                   cols="60"
                   >{{ request.form['note'] }}</textarea>
     <br>
+    <label for= "note_source">source</label>
+    <br>
+    <input type="text" name="note_source"
+               placeholder="note_source"
+               value="{{ request.form['note_source'] }}"> </input>
+    <br>
+    <input type="number" name="teacher_id"
+               placeholder="teacher_id"
+               value="{{ request.form['teacher_id'] }}"> </input>
+    <br>
+    <input type="number" name="category_id"
+               placeholder="category_id"
+               value="{{ request.form['category_id'] }}"> </input>
     <button type="submit">Toevoegen</button>
 </form>

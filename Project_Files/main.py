@@ -33,8 +33,11 @@ def create():
     if request.method == 'POST':
         title = request.form['title']
         note = request.form['note']
+        note_source = request.form['note_source']
+        teacher_id = request.form['teacher_id']
+        category_id = request.form['category_id']
 
-        if DB.create(title, note):
+        if DB.create(title, note, note_source, teacher_id,category_id):
             return redirect(url_for('notities'))
     return render_template('maaknotitie.html')
 
