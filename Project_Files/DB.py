@@ -14,11 +14,10 @@ def create(title, note, note_source, teacher_id,category_id):
     curs = conn.execute(notitie, (title, note, note_source, teacher_id,category_id))
     note = curs.fetchall()
     conn.commit()
-    conn.close()
     return note is not None
 
 def notities():
-    query2 = 'SELECT * FROM notes'
+    query2 = 'SELECT * FROM notes;'
     notes = conn.execute(query2).fetchall()
     return notes
 

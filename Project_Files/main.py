@@ -24,13 +24,8 @@ def login():
 
 @app.route("/overzicht", methods=['GET', 'POST'])
 def display_notes():
-    if request.method == 'POST':
-        title = request.form.get("title")
-        note = request.form.get("note")
-        note_source = request.form.get("note_source")
-        teacher_id = request.form.get("teacher_id")
-        category_id = request.form.get("category_id")
     notes = DB.notities()
+    print(notes)
     return render_template('overzicht_notities.html', notes=notes)
 
 @app.route('/create/', methods=('GET', 'POST'))
