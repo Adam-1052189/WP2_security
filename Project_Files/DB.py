@@ -18,11 +18,10 @@ def create(title, note, note_source, teacher_id,category_id):
     return note is not None
 
 def notities():
-    notes = conn.execute('SELECT * FROM notes')
-    curs = conn.execute(notes)
-    note = curs.fetchall()
-    conn.commit()
-    conn.close()
-    return note is not None
+    query2 = 'SELECT * FROM notes'
+    notes = conn.execute(query2).fetchall()
+    return notes
+
+
 
 

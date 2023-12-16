@@ -16,20 +16,24 @@
         </form>
 </div>
 
-<div>
-    <a href="{{ url_for('notities') }}"></a>
-</div>
+
 {% block content%}
-    {% for notes in notities %}
-    <div class='notes'>
-        <p>{{ notes['date_created'] }}</p>
-        <h3>{{ notes['title'] }}</h3>
-        <p>{{ notes['note'] }}</p>
-        <p>{{ notes['category_id']}}</p>
-        <p>{{ notes['teacher_id']}}</p>
-        <p>{{ notes['note_source']}}</p>
-    </div>
-    {% endfor %}
+    {% if notes %}
+        <div class="notes-container">
+            {% for note in notes %}
+                <form class='note'>
+                    <p>Date: {{ note['date_created'] }}</p>
+                    <h3>Title: {{ note['title'] }}</h3>
+                    <p>Inhoud: {{ note['note'] }}</p>
+                    <p>Categorie: {{ note['category_id']}}</p>
+                    <p>LeraarID: {{ note['teacher_id']}}</p>
+                    <p>Bron: {{ note['note_source']}}</p>
+                </form>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div>No notes available.</div>
+    {% endif %}
 {% endblock %}
 </body>
 </html>
