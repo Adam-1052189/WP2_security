@@ -16,21 +16,20 @@
         </form>
 </div>
 
-<div class="note">
-    {% block content%} {% endblock %}
+<div>
+    <a href="{{ url_for('notities') }}"></a>
 </div>
-
-{% for notes in notities %}
-<div class='notes'>
-    <p>{{ notities['date_created'] }}</p>
-    <h3>{{ notities['title'] }}</h3>
-    <p>{{ notites['note'] }}</p>
-    <p>{{notities['category_id']}}</p>
-    <p>{{notities['teacher_id']}}</p>
-    <p>{{notitites['note_source']}}</p>
-
-</div>
-{% endfor %}
-
+{% block content%}
+    {% for notes in notities %}
+    <div class='notes'>
+        <p>{{ notes['date_created'] }}</p>
+        <h3>{{ notes['title'] }}</h3>
+        <p>{{ notes['note'] }}</p>
+        <p>{{ notes['category_id']}}</p>
+        <p>{{ notes['teacher_id']}}</p>
+        <p>{{ notes['note_source']}}</p>
+    </div>
+    {% endfor %}
+{% endblock %}
 </body>
 </html>

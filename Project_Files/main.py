@@ -23,9 +23,15 @@ def login():
     return render_template('login_page.html')
 
 @app.route("/overzicht", methods=['GET', 'POST'])
-def notes():
-    DB.notes
-    return render_template('overzicht_notities.html', notes=notes)
+def notities():
+    if request.method == 'POST':
+        title = request.form.get("title")
+        note = request.form.get("note")
+        note_source = request.form.get("note_source")
+        teacher_id = request.form.get("teacher_id")
+        category_id = request.form.get("category_id")
+        return render_template('overzicht_notities.html', notes=DB.notities())
+    return render_template('overzicht_notities.html')
 
 @app.route('/create/', methods=('GET', 'POST'))
 def create():
@@ -37,7 +43,7 @@ def create():
         category_id = request.form['category_id']
 
         if DB.create(title, note, note_source, teacher_id,category_id):
-            return redirect(url_for('notes'))
+            return redirect(url_for('notities'))
     return render_template('maaknotitie.html')
 
 @app.route('/bewerk')
