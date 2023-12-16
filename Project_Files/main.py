@@ -37,7 +37,7 @@ def create():
         category_id = request.form['category_id']
 
         if DB.create(title, note, note_source, teacher_id,category_id):
-            return redirect(url_for('notities'))
+            return redirect(url_for('notes'))
     return render_template('maaknotitie.html')
 
 @app.route('/bewerk')
