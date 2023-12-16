@@ -22,12 +22,12 @@
         <div class="notes-container">
             {% for note in notes %}
                 <form class='note'>
-                    <p>Datum: {{ note["date_created"] }}</p>
-                    <h3>Titel: {{ note["title"] or 'Geen Titel' }}</h3>
-                    <p>Inhoud: {{ note["note"] or 'Geen Inhoud' }}</p>
-                    <p>Categorie: {{ note["category_id"] or 'Geen Categorie' }}</p>
-                    <p>LeraarID: {{ note["teacher_id"] or 'Geen LeraarID' }}</p>
-                    <p>Bron: {{ note["note_source"] or 'Geen Bron' }}</p>
+                    <p>Datum: {{ note[7] }}</p>
+                    <h3>Titel: {{ note[1] }}</h3>
+                    <p>Inhoud: {{ note[6] }}</p>
+                    <p>Categorie: {{ note[4] }}</p>
+                    <p>LeraarID: {{ note[5] }}</p>
+                    <p>Bron: {{ note[2] }}</p>
                 </form>
             {% endfor %}
         </div>

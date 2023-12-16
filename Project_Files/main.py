@@ -25,7 +25,7 @@ def login():
 @app.route("/overzicht", methods=['GET', 'POST'])
 def display_notes():
     notes = DB.notities()
-    print(notes)
+    app.logger.debug(notes)
     return render_template('overzicht_notities.html', notes=notes)
 
 @app.route('/create/', methods=('GET', 'POST'))
