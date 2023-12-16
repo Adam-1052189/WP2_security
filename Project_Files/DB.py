@@ -17,7 +17,7 @@ def create(title, note, note_source, teacher_id,category_id):
     return note is not None
 
 def notities():
-    query2 = 'SELECT * FROM notes;'
+    query2 = 'SELECT * FROM notes LIMIT 20;'
     notes = conn.execute(query2).fetchall()
     return notes
 

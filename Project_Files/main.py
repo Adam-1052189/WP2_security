@@ -1,33 +1,42 @@
-from flask import Flask, render_template, redirect, url_for, request, flash
+from flask import Flask, render_template, redirect, url_for, request
 import DB
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret key'
-
+notes = DB.notities()
+def paginering(page, per_page):
+    start = (page-1)*per_page
+    end = start +per_page
+    return notes[start:end]
+#homescreen
 @app.route("/")
 @app.route("/home")
 def home():
     return render_template('homepage.html')
-
+#login screen
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-
         if DB.login(username, password):
             return redirect('/overzicht')
         else:
             error = 'Invalid username or password. Please try again.'
             return render_template('login_page.html', error=error)
     return render_template('login_page.html')
-
+#view notes
 @app.route("/overzicht", methods=['GET', 'POST'])
 def display_notes():
     notes = DB.notities()
-    app.logger.debug(notes)
-    return render_template('overzicht_notities.html', notes=notes)
-
+    page = request.args.get('page', 1, type=int)
+    per_page = 5
+    total_notes=len(notes)
+    paginated_notes = paginering(page, per_page)
+    if not paginated_notes and page != 1:
+        return "page not found", 404
+    return render_template('overzicht_notities.html', page=page ,notes=paginated_notes, total_notes=total_notes, per_page=per_page)
+#create notes
 @app.route('/create/', methods=('GET', 'POST'))
 def create():
     if request.method == 'POST':
@@ -36,11 +45,12 @@ def create():
         note_source = request.form['note_source']
         teacher_id = request.form['teacher_id']
         category_id = request.form['category_id']
-
+        notitie = (title, note , note_source , teacher_id , category_id)
+        notes.append(notitie)
         if DB.create(title, note, note_source, teacher_id,category_id):
             return redirect(url_for('display_notes'))
     return render_template('maaknotitie.html')
-
+#edit notes
 @app.route('/bewerk')
 def edit():
     return render_template('edit_note.html')
