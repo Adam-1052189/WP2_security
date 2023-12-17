@@ -1,14 +1,22 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, session
+from functools import wraps
 import DB
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret key'
+
 notes = DB.notities()
 def paginering(page, per_page):
     start = (page-1)*per_page
     end = start +per_page
     return notes[start:end]
 #homescreen
+@app.before_request
+def check_inlog():
+    open_routes = ['home', 'static', 'login']
+    user = session.get('user')
+    if not user and request.endpoint not in open_routes:
+        return redirect(url_for('login'))
 @app.route("/")
 @app.route("/home")
 def home():
@@ -37,7 +45,7 @@ def display_notes():
         return "page not found", 404
     return render_template('overzicht_notities.html', page=page ,notes=paginated_notes, total_notes=total_notes, per_page=per_page)
 #create notes
-@app.route('/create/', methods=('GET','POST'))
+@app.route('/create/', methods=('GET', 'POST'))
 def create():
     if request.method == 'POST':
         title = request.form['title']
@@ -45,9 +53,9 @@ def create():
         note_source = request.form['note_source']
         teacher_id = request.form['teacher_id']
         category_id = request.form['category_id']
-        notitie = (title, note, note_source, teacher_id, category_id)
+        notitie = (title, note , note_source , teacher_id , category_id)
         notes.append(notitie)
-        if DB.create(title, note, note_source, teacher_id, category_id):
+        if DB.create(title, note, note_source, teacher_id,category_id):
             return redirect(url_for('display_notes'))
     return render_template('maaknotitie.html')
 #edit notes
