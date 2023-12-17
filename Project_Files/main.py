@@ -1,7 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, session
 from functools import wraps
 import DB
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret key'
 
@@ -10,6 +9,7 @@ def paginering(page, per_page):
     start = (page-1)*per_page
     end = start +per_page
     return notes[start:end]
+
 #homescreen
 @app.before_request
 def check_inlog():
@@ -21,18 +21,30 @@ def check_inlog():
 @app.route("/home")
 def home():
     return render_template('homepage.html')
+
 #login screen
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        if DB.login(username, password):
-            return redirect('/overzicht')
+
+        login = DB.Login()
+        user = DB.Login(username, password)
+        if user:
+            session["user"] = user
+            return redirect(url_for("display_notes"))
         else:
             error = 'Invalid username or password. Please try again.'
             return render_template('login_page.html', error=error)
     return render_template('login_page.html')
+
+#logout
+@app.route("/logout")
+def logout():
+    session.pop("user", None)
+    return redirect(url_for("login"))
+
 #view notes
 @app.route("/overzicht", methods=['GET', 'POST'])
 def display_notes():
@@ -44,6 +56,7 @@ def display_notes():
     if not paginated_notes and page != 1:
         return "page not found", 404
     return render_template('overzicht_notities.html', page=page ,notes=paginated_notes, total_notes=total_notes, per_page=per_page)
+
 #create notes
 @app.route('/create/', methods=('GET', 'POST'))
 def create():
@@ -58,6 +71,7 @@ def create():
         if DB.create(title, note, note_source, teacher_id,category_id):
             return redirect(url_for('display_notes'))
     return render_template('maaknotitie.html')
+
 #edit notes
 @app.route('/bewerk')
 def edit():
