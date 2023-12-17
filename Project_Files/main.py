@@ -29,7 +29,6 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
-        login = DB.Login()
         user = DB.Login(username, password)
         if user:
             session["user"] = user
