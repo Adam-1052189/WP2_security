@@ -30,14 +30,14 @@ def login():
 def display_notes():
     notes = DB.notities()
     page = request.args.get('page', 1, type=int)
-    per_page = 5
+    per_page = 2
     total_notes=len(notes)
     paginated_notes = paginering(page, per_page)
     if not paginated_notes and page != 1:
         return "page not found", 404
     return render_template('overzicht_notities.html', page=page ,notes=paginated_notes, total_notes=total_notes, per_page=per_page)
 #create notes
-@app.route('/create/', methods=('GET', 'POST'))
+@app.route('/create/', methods=('GET','POST'))
 def create():
     if request.method == 'POST':
         title = request.form['title']
@@ -45,9 +45,9 @@ def create():
         note_source = request.form['note_source']
         teacher_id = request.form['teacher_id']
         category_id = request.form['category_id']
-        notitie = (title, note , note_source , teacher_id , category_id)
+        notitie = (title, note, note_source, teacher_id, category_id)
         notes.append(notitie)
-        if DB.create(title, note, note_source, teacher_id,category_id):
+        if DB.create(title, note, note_source, teacher_id, category_id):
             return redirect(url_for('display_notes'))
     return render_template('maaknotitie.html')
 #edit notes

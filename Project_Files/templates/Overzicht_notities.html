@@ -22,19 +22,19 @@
         <div class="notes-container">
             {% for note in notes %}
                 <form class='note'>
-                    <p>Datum: {{ note[7] }}</p>
                     <h3>Titel: {{ note[1] }}</h3>
-                    <p>Inhoud: {{ note[6] }}</p>
+                    <p>Inhoud: {{ note[6] }} </p>
                     <p>Categorie: {{ note[4] }}</p>
                     <p>LeraarID: {{ note[5] }}</p>
                     <p>Bron: {{ note[2] }}</p>
+                    <p>Aangemaakt op: {{ note[7] }}</p>
                 </form>
             {% endfor %}
             {% if page > 1 %}
-                <a href="?page={{page-1}}">vorige pagina</a>
+                <a href="?page={{page-1}}" >Vorige pagina </a>
             {% endif %}
             {% if total_notes > page * per_page %}
-                <a href="?page={{ page + 1 }}">Volgende pagina</a>
+                <a href="?page={{ page + 1 }}" > Volgende pagina</a>
             {%endif%}
         </div>
     {% else %}

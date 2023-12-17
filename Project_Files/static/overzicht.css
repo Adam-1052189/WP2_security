@@ -7,6 +7,10 @@
 .notes-container {
     display: flex;
     flex-wrap: wrap;
+    font-family: 'Nunito';
+    justify-content: space-evenly;
+
+
 }
 
 .note {
@@ -15,6 +19,9 @@
     border: 1px solid;
     width: 100%;
     font-family: 'Nunito';
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 body {
