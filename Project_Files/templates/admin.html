@@ -8,6 +8,10 @@
 {% include 'navbar1.html' %}
 {% include 'navbar2.html' %}
 
-
+    <ul>
+        {% for teacher in teachers %}
+            <li>{{ teacher }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

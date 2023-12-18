@@ -33,7 +33,6 @@ def admindeleteteacher(teacher_id):
         conn.commit()
         return "Teacher deleted successfully"
     except Exception as e:
-        # Handle exceptions if needed
         return f"Error deleting teacher: {str(e)}"
     finally:
         if conn:
@@ -49,7 +48,6 @@ def createteacher(display_name, username, teacher_password, date_created, is_adm
         conn.commit()
         return "Teacher created successfully"
     except Exception as e:
-        # Handle exceptions if needed
         return f"Error creating teacher: {str(e)}"
     finally:
         if conn:

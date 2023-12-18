@@ -78,7 +78,10 @@ def edit():
 
 @app.route('/adminpage')
 def admin():
-    return render_template('admin.html')
+    teachers = your_previous_module.docenten()
+    return render_template('admin.html',teachers=teachers)
+
+
 
 if __name__ == "__main__":
     app.debug = True
