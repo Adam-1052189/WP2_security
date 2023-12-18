@@ -76,6 +76,9 @@ def create():
 def edit():
     return render_template('edit_note.html')
 
+@app.route('/adminpage')
+def admin():
+    return render_template('admin.html')
 
 if __name__ == "__main__":
     app.debug = True

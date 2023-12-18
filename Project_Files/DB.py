@@ -21,6 +21,24 @@ def notities():
     notes = conn.execute(query2).fetchall()
     return notes
 
+def docenten():
+    query2 = 'SELECT * FROM teachers;'
+    teachers = conn.execute(query2).fetchall()
+    return teachers
+def admindeleteteacher(teacher_id):
+    try:
+        cursor = conn.cursor()
+        query = 'DELETE FROM teachers WHERE teacher_id=?;'
+        cursor.execute(query, (teacher_id,))
+        conn.commit()
+        return "Teacher deleted successfully"
+    except Exception as e:
+        # Handle exceptions if needed
+        return f"Error deleting teacher: {str(e)}"
+    finally:
+        if conn:
+            conn.close()
+
 
 
 
