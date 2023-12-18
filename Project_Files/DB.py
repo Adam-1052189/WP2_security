@@ -16,6 +16,12 @@ def create(title, note, note_source, teacher_id,category_id):
     conn.commit()
     return note is not None
 
+def delete(note_id):
+    delete_query = 'DELETE FROM notes WHERE note_id = ?'
+    conn.execute(delete_query, (note_id))
+    conn.commit()
+    return True
+
 def notities():
     query2 = 'SELECT * FROM notes;'
     notes = conn.execute(query2).fetchall()

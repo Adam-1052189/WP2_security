@@ -76,6 +76,13 @@ def create():
 def edit_note():
     return render_template('edit_note.html')
 
+@app.route('/delete/<int:note_id>', methods=['POST'])
+def delete_note(note_id):
+    if DB.delete(note_id):
+        return redirect(url_for('display_notes'))
+    else:
+        return 'Notitie verwijderen mislukt'
+
 
 if __name__ == "__main__":
     app.debug = True

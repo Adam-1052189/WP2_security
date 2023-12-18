@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" xmlns="http://www.w3.org/1999/html">
 <head>
         <title>Test-Correct</title>
         <link rel="icon" type="image/x-icon" href="https://www.test-correct.nl/hubfs/3396b8f7-06dd-422d-984e-483680fc7791.png">
@@ -34,7 +34,14 @@
                         <a href="{{ url_for('edit_note', note_id=note[0]) }}">
                             <img src="../static/edit_button.png" alt="Bewerken" class="button-edit">
                         </a>
+
+                        <form method="post" action="{{ url_for('delete_note', note_id=note[0]) }}">
+                            <button type="submit" class="button-delete">
+                                    <img src="../static/delete_button.png" alt="Verwijder" class="delete-img">
+                            </button>
+                        </form>
                     </form>
+
             {% endfor %}
             {% if page > 1 %}
                 <a href="?page={{page-1}}" >Vorige pagina </a>
