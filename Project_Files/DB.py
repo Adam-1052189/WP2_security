@@ -38,6 +38,23 @@ def admindeleteteacher(teacher_id):
     finally:
         if conn:
             conn.close()
+def createteacher(display_name, username, teacher_password, date_created, is_admin):
+    try:
+        cursor = conn.cursor()
+        query = '''
+            INSERT INTO teachers (display_name, username, teacher_password, date_created, is_admin)
+            VALUES (?, ?, ?, ?, ?);
+        '''
+        cursor.execute(query, (display_name, username, teacher_password, date_created, is_admin))
+        conn.commit()
+        return "Teacher created successfully"
+    except Exception as e:
+        # Handle exceptions if needed
+        return f"Error creating teacher: {str(e)}"
+    finally:
+        if conn:
+            conn.close()
+
 
 
 
