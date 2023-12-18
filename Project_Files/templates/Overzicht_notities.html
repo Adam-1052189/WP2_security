@@ -19,18 +19,22 @@
 </div>
 
 
-{% block content%}
-    {% if notes %}
-        <div class="notes-container">
-            {% for note in notes %}
-                <form class='note'>
-                    <h3>Titel: {{ note[1] }}</h3>
-                    <p>Inhoud: {{ note[6] }} </p>
-                    <p>Categorie: {{ note[4] }}</p>
-                    <p>LeraarID: {{ note[5] }}</p>
-                    <p>Bron: {{ note[2] }}</p>
-                    <p>Aangemaakt op: {{ note[7] }}</p>
-                </form>
+    {% block content %}
+        {% if notes %}
+            <div class="notes-container">
+                {% for note in notes %}
+                    <form class='note'>
+                        <h3>Titel: {{ note[1] }}</h3>
+                        <p>Inhoud: {{ note[6] }} </p>
+                        <p>Categorie: {{ note[4] }}</p>
+                        <p>LeraarID: {{ note[5] }}</p>
+                        <p>Bron: {{ note[2] }}</p>
+                        <p>Aangemaakt op: {{ note[7] }}</p>
+
+                        <a href="{{ url_for('edit_note', note_id=note[0]) }}">
+                            <img src="../static/edit_button.png" alt="Bewerken" class="button-edit">
+                        </a>
+                    </form>
             {% endfor %}
             {% if page > 1 %}
                 <a href="?page={{page-1}}" >Vorige pagina </a>

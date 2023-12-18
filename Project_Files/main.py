@@ -73,7 +73,7 @@ def create():
 
 #edit notes
 @app.route('/bewerk')
-def edit():
+def edit_note():
     return render_template('edit_note.html')
 
 
