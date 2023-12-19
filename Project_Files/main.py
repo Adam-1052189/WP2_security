@@ -54,9 +54,11 @@ def display_notes():
     per_page = 2
     total_notes=len(notes)
     paginated_notes = paginering(page, per_page)
+    aantal_notities = DB.aantalnotities()
+
     if not paginated_notes and page != 1:
         return "page not found", 404
-    return render_template('overzicht_notities.html', page=page ,notes=paginated_notes, total_notes=total_notes, per_page=per_page)
+    return render_template('overzicht_notities.html', page=page ,notes=paginated_notes, total_notes=total_notes, per_page=per_page, aantal_notities=aantal_notities)
 
 #create notes
 @app.route('/create/', methods=('GET', 'POST'))

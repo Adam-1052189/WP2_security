@@ -24,6 +24,7 @@
 {% block content%}
     {% if notes %}
         <div class="notes-container">
+            <p>Aantal Notities: {{ aantal_notities }}</p>
             {% for note in notes %}
                 <form class='note'>
                     <h3>Titel: {{ note[1] }}</h3>
