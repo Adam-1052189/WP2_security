@@ -81,14 +81,10 @@ body {
   color: #FFFFFF;
 }
 
-
 .button-Filter {
   background-color: #3DBB57;
   color: #FFFFFF;
 }
-
-
-
 
 section h3 {
   font-family: "Nunito";
@@ -108,3 +104,16 @@ section p {
   font-family: 'Nunito';
 }
 
+.button-delete {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    padding-right: 20px;
+}
+
+.delete-img {
+    width: 30px;
+    height: 30px;
+}
