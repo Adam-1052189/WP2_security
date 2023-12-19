@@ -16,9 +16,11 @@ def paginering(page, per_page):
 @app.before_request
 def check_inlog():
     open_routes = ['home', 'static', 'login']
+    admin_routes = ['adminmenu']
     user = session.get('user')
     if not user and request.endpoint not in open_routes:
         return redirect(url_for('login'))
+
 @app.route("/")
 @app.route("/home")
 def home():
@@ -30,11 +32,13 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['teacher_password']
-
         user = DB.Login(username, password)
         print(username)
-        if user:
-            session["user"] = {'username': user[0]}
+        if user is not None:  
+            session["user"] = {
+                'username': user[0],
+                'is_admin': user[1] == 1
+            }
             return redirect(url_for("display_notes"))
         else:
             error = 'Invalid username or password. Please try again.'
@@ -83,7 +87,18 @@ def create():
 def edit():
     return render_template('edit_note.html')
 
+def admin_required(f):
+    @wraps(f)
+    def admin(*args, **kwargs):
+        user = session.get('user')
+        if user and user.get('is_admin') == 1:  
+            return f(*args, **kwargs)
+        else:
+            return redirect(url_for('login'))  
+    return admin
+
 @app.route('/adminpage/', methods=('GET','POST'))
+@admin_required
 def adminmenu():
     if request.method == 'POST':
         username = request.form['username']
