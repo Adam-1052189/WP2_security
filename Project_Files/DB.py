@@ -7,7 +7,7 @@ def Login(username, password):
     query = 'SELECT username, teacher_password FROM teachers WHERE username=? AND teacher_password=?;'
     cursor = conn.execute(query, (username, password))
     user = cursor.fetchone()
-    return user is not None
+    return user 
 
 def create(title, note, note_source, teacher_id,category_id):
     notitie = 'INSERT INTO notes (title, note, note_source, teacher_id, category_id) VALUES (?,?,?,?,?)'

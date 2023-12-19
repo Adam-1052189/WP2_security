@@ -32,8 +32,9 @@ def login():
         password = request.form['teacher_password']
 
         user = DB.Login(username, password)
+        print(username)
         if user:
-            session["user"] = user
+            session["user"] = {'username': user[0]}
             return redirect(url_for("display_notes"))
         else:
             error = 'Invalid username or password. Please try again.'
@@ -49,6 +50,8 @@ def logout():
 #view notes
 @app.route("/overzicht", methods=['GET', 'POST'])
 def display_notes():
+    user = session.get('user')
+
     notes = DB.notities()
     page = request.args.get('page', 1, type=int)
     per_page = 2
