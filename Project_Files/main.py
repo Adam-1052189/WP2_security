@@ -1,6 +1,8 @@
 from flask import Flask, render_template, redirect, url_for, request, session
 from functools import wraps
 import DB
+
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret key'
 
@@ -27,7 +29,7 @@ def home():
 def login():
     if request.method == 'POST':
         username = request.form['username']
-        password = request.form['password']
+        password = request.form['teacher_password']
 
         user = DB.Login(username, password)
         if user:
@@ -76,12 +78,24 @@ def create():
 def edit_note():
     return render_template('edit_note.html')
 
+
 @app.route('/delete/<int:note_id>', methods=['POST'])
 def delete_note(note_id):
     if DB.delete(note_id):
         return redirect(url_for('display_notes'))
     else:
         return 'Notitie verwijderen mislukt'
+
+@app.route('/adminpage/', methods=('GET','POST'))
+def adminmenu():
+    if request.method == 'POST':
+        username = request.form['username']
+        teacher_password = request.form['teacher_password']
+        display_name = request.form['display_name']
+        DB.adminmenu(username, teacher_password, display_name)
+        return render_template('adminpage.html', username='', teacher_password='', display_name='')
+    return render_template('adminpage.html')
+
 
 
 if __name__ == "__main__":
