@@ -21,11 +21,11 @@ def notities():
     notes = conn.execute(query2).fetchall()
     return notes
 
-def adminmenu(display_name, username, teacher_password, date_created, is_admin):
-    query3 = 'INSERT INTO teachers (display_name, username, teacher_password, date_created, is_admin) VALUES (?,?,?,?,?)'
-    gegevens = conn.execute(query3,(display_name, username, teacher_password, date_created, is_admin))
-    gegevens.fetchall()
+def adminmenu(username, teacher_password, display_name):
+    query3 = 'INSERT INTO teachers (username, teacher_password, display_name) VALUES (?,?,?)'
+    conn.execute(query3, (username, teacher_password, display_name))
     conn.commit()
+
 
 
 

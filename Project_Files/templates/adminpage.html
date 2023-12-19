@@ -8,21 +8,27 @@
 <body>
     {% include 'navbar1.html' %}
     {% include 'navbar2.html' %}
-<form method="post">
+
+<form method="post" action="/adminpage/">
     <h1>Account aanmaken voor leeraren</h1>
     <br>
-    <label for= "username">username</label>
+    <label for= "username">Gebruikersnaam</label>
     <br>
     <input type="text" name="username"
             placeholder="username"
             value="{{ request.form['username'] }}"> </input>
     <br>
-    <label for= "teacher_password">teacher_password</label>
+    <label for= "teacher_password">Wachtwoord</label>
     <br>
     <input type="text" name="teacher_password"
             placeholder="teacher_password"
             value="{{ request.form['teacher_password'] }}"> </input>
     <br>
+    <label for= "display_name">Gebruikersnaam</label>
+    <br>
+    <input type="text" name="display_name"
+            placeholder="display_name"
+            value="{{ request.form['display_name'] }}">
     <button type="submit">Toevoegen</button>
 </form>
 </body>
