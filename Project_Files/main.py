@@ -83,10 +83,9 @@ def create():
         note_source = request.form['note_source']
         teacher_id = request.form['teacher_id']
         category_id = request.form['category_id']
-        notitie = (title, note , note_source , teacher_id , category_id)
+
 
         if DB.create(title, note, note_source, teacher_id,category_id):
-            notes = DB.notities()
             return redirect(url_for('display_notes'))
 
     return render_template('maaknotitie.html')
