@@ -76,6 +76,13 @@ def create():
 def edit():
     return render_template('edit_note.html')
 
+@app.route('/adminpage', methods=('GET','POST'))
+def adminpage():
+    if request.method == 'POST':
+        username = request.form['username']
+        teacher_password = request.form['teacher_password']
+    return render_template('adminpage.html')
+
 
 if __name__ == "__main__":
     app.debug = True

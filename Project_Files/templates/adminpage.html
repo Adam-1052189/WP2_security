@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+        <title>Test-Correct</title>
+        <link rel="icon" type="image/x-icon" href="https://www.test-correct.nl/hubfs/3396b8f7-06dd-422d-984e-483680fc7791.png">
+        <link rel="stylesheet" href="../static/overzicht.css" type="text/css">
+</head>
+<body>
+    {% include 'navbar1.html' %}
+    {% include 'navbar2.html' %}
+<form method="post">
+    <h1>Account aanmaken voor leeraren</h1>
+    <br>
+    <label for= "username">username</label>
+    <br>
+    <input type="text" name="username"
+            placeholder="username"
+            value="{{ request.form['username'] }}"> </input>
+    <br>
+    <label for= "teacher_password">teacher_password</label>
+    <br>
+    <input type="text" name="teacher_password"
+            placeholder="teacher_password"
+            value="{{ request.form['teacher_password'] }}"> </input>
+    <br>
+    <button type="submit">Toevoegen</button>
+</form>
+</body>
+</html>
