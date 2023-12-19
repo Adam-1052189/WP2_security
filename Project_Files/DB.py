@@ -26,10 +26,18 @@ def adminmenu(username, teacher_password, display_name):
     conn.execute(query3, (username, teacher_password, display_name))
     conn.commit()
 
+
 def categoriesaanmaken(omschrijving):
     query4 = 'INSERT INTO categories (omschrijving) VALUES (?)'
     conn.execute(query4, (omschrijving,))
     conn.commit()
+
+def aantalnotities():
+    query5 = 'SELECT COUNT(note_id) FROM notes;'
+    result = conn.execute(query5).fetchone()
+    count = result[0] if result else 0
+    return count
+
 
 
 
