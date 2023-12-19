@@ -26,7 +26,10 @@ def adminmenu(username, teacher_password, display_name):
     conn.execute(query3, (username, teacher_password, display_name))
     conn.commit()
 
-
+def categoriesaanmaken(omschrijving):
+    query4 = 'INSERT INTO categories (omschrijving) VALUES (?)'
+    conn.execute(query4, (omschrijving,))
+    conn.commit()
 
 
 

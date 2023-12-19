@@ -87,6 +87,12 @@ def adminmenu():
         DB.adminmenu(username, teacher_password, display_name)
     return render_template('adminpage.html')
 
+@app.route('/categories/', methods=('GET','POST'))
+def categories():
+    if request.method == 'POST':
+        omschrijving = request.form['omschrijving']
+        DB.categoriesaanmaken(omschrijving)
+    return render_template('categories.html')
 
 if __name__ == "__main__":
     app.debug = True
