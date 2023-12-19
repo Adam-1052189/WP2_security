@@ -9,9 +9,23 @@
 {% include 'navbar2.html' %}
 
     <ul>
-        {% for teacher in teachers %}
-            <li>{{ teacher }}</li>
+        {% for formulier in ingevulde_formulieren %}
+            <li>{{ formulier.naam }} - Leeftijd: {{ formulier.leeftijd }}</li>
         {% endfor %}
     </ul>
+
+    {% if show_form %}
+        <h2>Vul het formulier in:</h2>
+        <form action="/formulier" method="post">
+            Leraar: <input type="text" name="naam" required><br>
+            Teacher_id: <input type="number" name="leeftijd" required><br>
+            <input type="submit" value="Verzenden">
+        </form>
+    {% else %}
+        <form action="/toon_formulier" method="post">
+            <input type="submit" value="Voeg een formulier toe">
+        </form>
+    {% endif %}
+
 </body>
 </html>

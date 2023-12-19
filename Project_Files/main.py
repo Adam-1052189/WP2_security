@@ -76,10 +76,28 @@ def create():
 def edit():
     return render_template('edit_note.html')
 
-@app.route('/adminpage')
+ingevulde_formulieren = []
+
+# Variable om de weergave van het formulier te beheren
+show_form = False
+@app.route('/admin')
 def admin():
-    teachers = your_previous_module.docenten()
-    return render_template('admin.html',teachers=teachers)
+    return render_template('admin.html', ingevulde_formulieren=ingevulde_formulieren, show_form=show_form)
+
+@app.route('/toon_formulier', methods=['POST'])
+def toon_formulier():
+    global show_form
+    show_form = True
+    return redirect('/admin')
+
+@app.route('/formulier', methods=['POST'])
+def formulier():
+    global show_form
+    show_form = False
+    naam = request.form['naam']
+    leeftijd = request.form['leeftijd']
+    ingevulde_formulieren.append({'naam': naam, 'leeftijd': leeftijd})
+    return redirect('/admin')
 
 
 
