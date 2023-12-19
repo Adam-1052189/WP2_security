@@ -5,14 +5,15 @@
     <title>categories</title>
 </head>
 <body>
-
+{% include 'navbar1.html' %}
+{% include 'navbar2.html' %}
 <form method="post" action="/categories/">
-    <label for= "omschrijving">omschrijving</label>
+    <h1><label for= "omschrijving">U kunt hier een categorie toevoegen</label></h1>
     <br>
     <input type="text" name="omschrijving" required
                 placeholder="omschrijving"
                 value="{{ omschrijving }}"> </input>
-    <br>
+    <br><br>
     <button type="submit">Toevoegen</button>
 </form>
 </body>
