@@ -2,6 +2,12 @@ import sqlite3
 
 conn = sqlite3.connect('../databases/testgpt.db', check_same_thread=False)
 
+def delete(note_id):
+    delete_query = 'DELETE FROM notes WHERE note_id = ?'
+    conn.execute(delete_query, (note_id, ))
+    conn.commit()
+    return True
+
 
 def Login(username, password):
     query = 'SELECT username, teacher_password FROM teachers WHERE username=? AND teacher_password=?;'

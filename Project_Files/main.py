@@ -46,6 +46,20 @@ def logout():
     session.pop("user", None)
     return redirect(url_for("login"))
 
+#delete note
+@app.route('/delete/<int:note_id>', methods=['POST'])
+def delete_note(note_id):
+    if request.method == 'POST':
+        if DB.delete(note_id):
+            return redirect(url_for('display_notes'))
+        else:
+            return 'Notities verwijderen mislukt'
+    else:
+        return redirect(url_for('display_notes'))
+
+
+
+
 #view notes
 @app.route("/overzicht", methods=['GET', 'POST'])
 def display_notes():

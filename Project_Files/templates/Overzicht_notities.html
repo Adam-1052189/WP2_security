@@ -9,17 +9,16 @@
      {% include 'navbar1.html' %}
      {% include 'navbar2.html' %}
 
-<div class="search-container">
-        <form class="search-input" role="search">
-            <input class="form-controle" type="search" placeholder="Search">
-            <button class="button-search" type="submit">Search</button>
-            <a href="/create" class="button-nieuwe-notitie">Nieuwe Notitie</a>
-            <button class="button-Filter">Filter</button>
-        </form>
-</div>
+    <div class="search-container">
+            <form class="search-input" role="search">
+                <input class="form-controle" type="search" placeholder="Search">
+                <button class="button-search" type="submit">Search</button>
+                <a href="/create" class="button-nieuwe-notitie">Nieuwe Notitie</a>
+                <button class="button-Filter">Filter</button>
+            </form>
+    </div>
 
 <a href="/adminpage" class="button-nieuwe-notitie">admin page</a>
-
 <a href="/categories/" class="button-nieuwe-notitie">categories</a>
 
 {% block content%}
@@ -27,6 +26,12 @@
         <div class="notes-container">
             <p>Aantal Notities: {{ aantal_notities }}</p>
             {% for note in notes %}
+                <form method="POST" action="{{ url_for ('delete_note', note_id=note[0]) }}" class ="delete_note">
+                    <input type="hidden" name="note_id" value="{{ note[0] }}">
+                    <button type="submit" class="button-delete">
+                        <img src="../static/delete_button.png" alt="verwijder" class="delete-img">
+                    </button>
+                </form>
                 <form class='note'>
                     <h3>Titel: {{ note[1] }}</h3>
                     <p>Inhoud: {{ note[6] }} </p>
@@ -34,6 +39,8 @@
                     <p>LeraarID: {{ note[5] }}</p>
                     <p>Bron: {{ note[2] }}</p>
                     <p>Aangemaakt op: {{ note[7] }}</p>
+
+
                 </form>
             {% endfor %}
             {% if page > 1 %}
