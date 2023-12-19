@@ -85,7 +85,6 @@ def adminmenu():
         teacher_password = request.form['teacher_password']
         display_name = request.form['display_name']
         DB.adminmenu(username, teacher_password, display_name)
-        return render_template('adminpage.html', username='', teacher_password='', display_name='')
     return render_template('adminpage.html')
 
 
