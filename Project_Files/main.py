@@ -1,13 +1,15 @@
 from flask import Flask, render_template, redirect, url_for, request, session
 from functools import wraps
 import DB
+from flask_caching import Cache
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret key'
 
+cache = Cache(app)
 notes = DB.notities()
-def paginering(page, per_page):
+def paginering(page, per_page, notes):
     start = (page-1)*per_page
     end = start +per_page
     return notes[start:end]
@@ -57,17 +59,15 @@ def delete_note(note_id):
     else:
         return redirect(url_for('display_notes'))
 
-
-
-
 #view notes
 @app.route("/overzicht", methods=['GET', 'POST'])
+@cache.cached(timeout=60)
 def display_notes():
     notes = DB.notities()
     page = request.args.get('page', 1, type=int)
     per_page = 2
     total_notes=len(notes)
-    paginated_notes = paginering(page, per_page)
+    paginated_notes = paginering(page, per_page, notes)
     aantal_notities = DB.aantalnotities()
 
     if not paginated_notes and page != 1:
@@ -84,9 +84,11 @@ def create():
         teacher_id = request.form['teacher_id']
         category_id = request.form['category_id']
         notitie = (title, note , note_source , teacher_id , category_id)
-        notes.append(notitie)
+
         if DB.create(title, note, note_source, teacher_id,category_id):
+            notes = DB.notities()
             return redirect(url_for('display_notes'))
+
     return render_template('maaknotitie.html')
 
 #edit notes
