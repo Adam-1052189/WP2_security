@@ -10,8 +10,17 @@ def delete(note_id):
 
 
 def Login(username, password):
-    query = 'SELECT username, teacher_password FROM teachers WHERE username=? AND teacher_password=?;'
+    query = 'SELECT username, teacher_password, teacher_id FROM teachers WHERE username=? AND teacher_password=?;'
     cursor = conn.execute(query, (username, password))
+    user = cursor.fetchone()
+    if user is None:
+        return False
+    return user[2]
+
+def check_admin(teacher_id):
+    print(teacher_id)
+    query = 'SELECT teacher_id, is_admin FROM teachers WHERE teacher_id=? AND is_admin=1'
+    cursor = conn.execute(query, (str(teacher_id)))
     user = cursor.fetchone()
     return user is not None
 
