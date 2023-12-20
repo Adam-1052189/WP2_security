@@ -36,6 +36,15 @@ def notities():
     notes = conn.execute(query2).fetchall()
     return notes
 
+def filter(teacher_id):
+    query = '''SELECT notes.note_id, notes.note, notes.title, notes.note_source, teachers.display_name,
+    notes.date_created, categories.omschrijving  FROM notes 
+    INNER JOIN categories ON notes.category_id = categories.category_id 
+    INNER JOIN teachers ON teachers.teacher_id = notes.teacher_id 
+    WHERE notes.teacher_id = ?;'''
+    filters = conn.execute(query, (teacher_id,)).fetchmany()
+    return filters
+
 def get_categories():
     query = 'SELECT category_id, omschrijving FROM categories;'
     categories = conn.execute(query).fetchall()
