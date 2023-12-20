@@ -9,8 +9,8 @@
     {% include 'navbar1.html' %}
     {% include 'navbar2.html' %}
 
-<form method="post" action="/adminpage/">
-    <h1>Account aanmaken voor leeraren</h1>
+<form class="gebruiker" method="post" action="/adminpage/">
+    <h1>Account aanmaken voor docenten</h1>
     <br>
     <label for= "username">Gebruikersnaam</label>
     <br>
@@ -32,5 +32,24 @@
     <br>
     <button type="submit">Toevoegen</button>
 </form>
+
+{% block content %}
+    {% if gebruikers %}
+        <div class="teachers-container">
+            {% for gebruiker in gebruikers %}
+            <form class='gebruiker' method="POST" action="{{ url_for ('delete_teacher', teacher_id=gebruiker[3]) }}">
+                <h3>Display naam: {{ gebruiker[0] }}</h3>
+                <p>Gebruikersnaam: {{ gebruiker[1] }} </p>
+                <p>Wachtwoord: {{ gebruiker[2] }}</p>
+                <button type="submit" class="button-delete">
+                    <img src="../static/delete_button.png" alt="verwijder" class="delete-img">
+                </button>
+                <input type="hidden" name="teacher_id" value="{{ gebruiker[0] }}">
+            </form>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
 </body>
 </html>

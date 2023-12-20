@@ -11,6 +11,7 @@ cache = Cache(app)
 notes = DB.notities()
 categories = DB.get_categories()
 teachers = DB.get_teacher()
+gebruikers = DB.adminscherm()
 
 def paginering(page, per_page, notes):
     start = (page-1)*per_page
@@ -64,6 +65,8 @@ def delete_note(note_id):
     else:
         return redirect(url_for('display_notes'))
 
+
+
 #view notes
 @app.route("/overzicht", methods=['GET', 'POST'])
 @cache.cached(timeout=60)
@@ -102,6 +105,16 @@ def create():
 def edit():
     return render_template('edit_note.html')
 
+@app.route('/delete_user/<int:teacher_id>', methods=['POST'])
+def delete_teacher(teacher_id):
+    if request.method == 'POST':
+        if DB.delete_gebruiker(teacher_id):
+            return redirect(url_for('adminmenu'))
+        else:
+            return 'Gebruiker verwijderen mislukt'
+    else:
+        return redirect(url_for('adminpage'))
+
 @app.route('/adminpage/', methods=('GET','POST'))
 def adminmenu():
     teacher_id = session.get('user')
@@ -112,7 +125,8 @@ def adminmenu():
         teacher_password = request.form['teacher_password']
         display_name = request.form['display_name']
         DB.adminmenu(username, teacher_password, display_name)
-    return render_template('adminpage.html')
+    gebruikers = DB.adminscherm()
+    return render_template('adminpage.html', gebruikers=gebruikers)
 
 @app.route('/categories/', methods=('GET','POST'))
 def categories():

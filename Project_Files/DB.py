@@ -51,6 +51,16 @@ def adminmenu(username, teacher_password, display_name):
     conn.execute(query3, (username, teacher_password, display_name))
     conn.commit()
 
+def adminscherm():
+    query = 'SELECT display_name, username, teacher_password, teacher_id FROM teachers;'
+    gebruikers = conn.execute(query).fetchall()
+    return gebruikers
+
+def delete_gebruiker(teacher_id):
+    query = 'DELETE FROM teachers WHERE teacher_id = ?'
+    conn.execute(query, (teacher_id, ))
+    conn.commit()
+    return True
 
 def categoriesaanmaken(omschrijving):
     query4 = 'INSERT INTO categories (omschrijving) VALUES (?)'

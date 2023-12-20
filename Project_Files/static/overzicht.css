@@ -9,8 +9,24 @@
     flex-wrap: wrap;
     font-family: 'Nunito';
     justify-content: space-evenly;
+}
 
+.teachers-container {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'Nunito';
+    justify-content: space-evenly;
+}
 
+.gebruiker {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid;
+    width: 100%;
+    font-family: 'Nunito';
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .note {
