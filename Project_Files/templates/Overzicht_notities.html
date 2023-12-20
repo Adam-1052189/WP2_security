@@ -27,12 +27,12 @@
             <p>Aantal Notities: {{ aantal_notities }}</p>
                 {% for note in notes %}
                     <form class='note' method="POST" action="{{ url_for ('delete_note', note_id=note[0]) }}">
-                        <h3>Titel: {{ note[1] }}</h3>
-                        <p>Inhoud: {{ note[6] }} </p>
-                        <p>Categorie: {{ note[4] }}</p>
-                        <p>LeraarID: {{ note[5] }}</p>
-                        <p>Bron: {{ note[2] }}</p>
-                        <p>Aangemaakt op: {{ note[7] }}</p>
+                        <h3>Titel: {{ note[2] }}</h3>
+                        <p>Inhoud: {{ note[1] }} </p>
+                        <p>Categorie: {{ note[6] }}</p>
+                        <p>LeraarID: {{ note[4] }}</p>
+                        <p>Bron: {{ note[3] }}</p>
+                        <p>Aangemaakt op: {{ note[5] }}</p>
 
                         <button type="submit" class="button-delete">
                             <img src="../static/delete_button.png" alt="verwijder" class="delete-img">
