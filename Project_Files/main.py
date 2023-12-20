@@ -10,6 +10,7 @@ app.config['SECRET_KEY'] = 'secret key'
 cache = Cache(app)
 notes = DB.notities()
 categories = DB.get_categories()
+teachers = DB.get_teacher()
 
 def paginering(page, per_page, notes):
     start = (page-1)*per_page
@@ -85,7 +86,7 @@ def create():
         title = request.form['title']
         note = request.form['note']
         note_source = request.form['note_source']
-        teacher_id = request.form['teacher_id']
+        teacher_id = session.get('user')
         category_id = request.form['categorie']
 
 
@@ -93,7 +94,8 @@ def create():
             return redirect(url_for('display_notes'))
     categories = DB.get_categories()
     notes = DB.notities()
-    return render_template('maaknotitie.html', notes=notes, categories=categories)
+    teachers = DB.get_teacher()
+    return render_template('maaknotitie.html', notes=notes, categories=categories, teachers=teachers)
 
 #edit notes
 @app.route('/bewerk')
