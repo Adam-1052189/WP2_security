@@ -9,6 +9,8 @@ app.config['SECRET_KEY'] = 'secret key'
 
 cache = Cache(app)
 notes = DB.notities()
+categories = DB.get_categories()
+
 def paginering(page, per_page, notes):
     start = (page-1)*per_page
     end = start +per_page
@@ -67,14 +69,14 @@ def delete_note(note_id):
 def display_notes():
     notes = DB.notities()
     page = request.args.get('page', 1, type=int)
-    per_page = 2
-    total_notes=len(notes)
+    per_page = 4
+    total_notes = len(notes)
     paginated_notes = paginering(page, per_page, notes)
     aantal_notities = DB.aantalnotities()
-
     if not paginated_notes and page != 1:
+
         return "page not found", 404
-    return render_template('overzicht_notities.html', page=page ,notes=paginated_notes, total_notes=total_notes, per_page=per_page, aantal_notities=aantal_notities)
+    return render_template('overzicht_notities.html', page=page, notes=paginated_notes, total_notes=total_notes, per_page=per_page, aantal_notities=aantal_notities)
 
 #create notes
 @app.route('/create/', methods=('GET', 'POST'))
@@ -84,14 +86,14 @@ def create():
         note = request.form['note']
         note_source = request.form['note_source']
         teacher_id = request.form['teacher_id']
-        category_id = request.form['category_id']
-        notitie = (title, note , note_source , teacher_id , category_id)
+        category_id = request.form['categorie']
+
 
         if DB.create(title, note, note_source, teacher_id,category_id):
-            notes = DB.notities()
             return redirect(url_for('display_notes'))
-
-    return render_template('maaknotitie.html')
+    categories = DB.get_categories()
+    notes = DB.notities()
+    return render_template('maaknotitie.html', notes=notes, categories=categories)
 
 #edit notes
 @app.route('/bewerk')

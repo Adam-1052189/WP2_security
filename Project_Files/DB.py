@@ -32,9 +32,14 @@ def create(title, note, note_source, teacher_id,category_id):
     return note is not None
 
 def notities():
-    query2 = 'SELECT * FROM notes;'
+    query2 = 'SELECT notes.note_id, notes.note, notes.title, notes.note_source, notes.teacher_id, notes.date_created, categories.omschrijving  FROM notes INNER JOIN categories ON notes.category_id = categories.category_id;'
     notes = conn.execute(query2).fetchall()
     return notes
+
+def get_categories():
+    query = 'SELECT category_id, omschrijving FROM categories;'
+    categories = conn.execute(query).fetchall()
+    return categories
 
 def adminmenu(username, teacher_password, display_name):
     query3 = 'INSERT INTO teachers (username, teacher_password, display_name) VALUES (?,?,?)'
