@@ -82,7 +82,7 @@ def get_note_id(note_id):
 def update_note(note_id,title,note,note_source,category_id):
     update_query = '''
     UPDATE notes
-    SET title=?, note=?, note_source=?, teacher_id=?, category_id=?
+    SET title=?, note=?, note_source=?, category_id=?
     WHERE note_id=?
     '''
 
