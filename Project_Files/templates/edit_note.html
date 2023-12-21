@@ -1,6 +1,41 @@
+
+
+<!DOCTYPE html>
+<html lang="nl">
 <head>
+    <title>Bewerk Notitie</title>
     <link rel="stylesheet" href="../static/maaknotitie.css" type="text/css">
 </head>
+<body>
+    {% include 'navbar1.html' %}
+    {% include 'navbar2.html' %}
 
- {% include 'navbar1.html' %}
- {% include 'navbar2.html' %}
+    <h2>Bewerk Notitie</h2>
+    <form method="POST" action="{{ url_for('edit_note', note_id=note[0]) }}">
+        <label for="title">Titel:</label>
+        <input type="text" name="title" value="{{ note[2] }}" required>
+
+        <label for="note">Inhoud:</label>
+        <textarea name="note" required>{{ note[1] }}</textarea>
+
+        <label for="note_source">Bron:</label>
+        <input type="text" name="note_source" value="{{ note[3] }}" required>
+
+        <label for="teacher_id">Leraar:</label>
+        <select name="teacher_id" required>
+            {% for teacher in teachers %}
+                <option value="{{ teacher[0] }}" {% if note[4] == teacher[0] %} selected {% endif %}>{{ teacher[1] }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="categorie">Categorie:</label>
+        <select name="categorie" required>
+            {% for category in categories %}
+                <option value="{{ category[0] }}" {% if note[5] == category[0] %} selected {% endif %}>{{ category[1] }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Opslaan</button>
+    </form>
+</body>
+</html>

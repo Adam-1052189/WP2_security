@@ -73,7 +73,19 @@ def aantalnotities():
     count = result[0] if result else 0
     return count
 
+def get_note_id(note_id):
+    query = 'SELECT note_id, title, note, note_source, category_id FROM notes WHERE note_id=?;'
+    cursor = conn.execute(query, (note_id,))
+    note = cursor.fetchone()
+    return note
 
+def update_note(note_id,title,note,note_source,category_id):
+    update_query = '''
+    UPDATE notes
+    SET title=?, note=?, note_source=?, teacher_id=?, category_id=?
+    WHERE note_id=?
+    '''
 
-
+    conn.execute(update_query,(title,note,note_source,category_id,note_id))
+    conn.commit()
 

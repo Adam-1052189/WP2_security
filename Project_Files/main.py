@@ -101,9 +101,22 @@ def create():
     return render_template('maaknotitie.html', notes=notes, categories=categories, teachers=teachers)
 
 #edit notes
-@app.route('/bewerk')
-def edit():
-    return render_template('edit_note.html')
+@app.route('/edit/<int:note_id>', methods=['GET', 'POST'])
+def edit_note(note_id):
+    note = DB.get_note_id(note_id)
+
+    if request.method == 'POST':
+        updated_title = request.form['title']
+        updated_note = request.form['note']
+        updated_note_source = request.form['note_source']
+        updated_category_id = request.form['categorie']
+
+        DB.update_note(note_id, updated_title, updated_note, updated_note_source, updated_category_id)
+        return redirect(url_for('display_notes'))
+
+    categories = DB.get_categories()
+    teachers = DB.get_teacher()
+    return render_template('edit_note.html', note=note, categories=categories, teachers=teachers)
 
 @app.route('/delete_user/<int:teacher_id>', methods=['POST'])
 def delete_teacher(teacher_id):
