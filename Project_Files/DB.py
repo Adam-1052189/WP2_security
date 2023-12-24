@@ -20,7 +20,7 @@ def Login(username, password):
 def check_admin(teacher_id):
     print(teacher_id)
     query = 'SELECT teacher_id, is_admin FROM teachers WHERE teacher_id=? AND is_admin=1'
-    cursor = conn.execute(query, (str(teacher_id)))
+    cursor = conn.execute(query, (str(teacher_id),))
     user = cursor.fetchone()
     return user is not None
 
