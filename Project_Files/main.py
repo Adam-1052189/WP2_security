@@ -148,6 +148,10 @@ def categories():
         DB.categoriesaanmaken(omschrijving)
     return render_template('categories.html')
 
+@app.route('/seenote/<int:note_id>', methods=('GET','POST'))
+def seenotes():
+    return render_template('edit_note.html')
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
