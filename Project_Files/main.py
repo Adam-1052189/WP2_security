@@ -146,7 +146,12 @@ def categories():
     if request.method == 'POST':
         omschrijving = request.form['omschrijving']
         DB.categoriesaanmaken(omschrijving)
-    return render_template('categories.html')
+    return showcategories()
+
+@app.route('/categoriestonen/', methods=('GET', 'POST'))
+def showcategories():
+    categories_list = DB.categories()
+    return render_template('categories.html', categories_list=categories_list)
 
 if __name__ == "__main__":
     app.debug = True

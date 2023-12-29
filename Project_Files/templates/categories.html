@@ -16,5 +16,31 @@
     <br><br>
     <button type="submit">Toevoegen</button>
 </form>
+{% block content %}
+    {% if categories_list %}
+        <div class="categories-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category ID</th>
+                        <th>Omschrijving</th>
+                        <th>Date Created</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories_list %}
+                        <tr>
+                            <td>{{ category.category_id }}</td>
+                            <td>{{ category.omschrijving }}</td>
+                            <td>{{ category.date_created }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div>No categories available.</div>
+    {% endif %}
+{% endblock %}
 </body>
 </html>
