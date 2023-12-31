@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>categories</title>
+    <link rel="stylesheet" href="../static/categoriesstyle.css" type="text/css">
 </head>
 <body>
 {% include 'navbar1.html' %}
@@ -22,17 +23,25 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Category ID</th>
-                        <th>Omschrijving</th>
-                        <th>Date Created</th>
+                        <th class="categoryidcss">Category ID</th>
+                        <th class="omschrijvingcss">Omschrijving</th>
+                        <th class="datecreatedcss">Date Created</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for category in categories_list %}
                         <tr>
-                            <td>{{ category.category_id }}</td>
-                            <td>{{ category.omschrijving }}</td>
-                            <td>{{ category.date_created }}</td>
+                            <td class="categoryidcss">{{ category.category_id }}</td>
+                            <td class="omschrijvingcss"> {{ category.omschrijving }}</td>
+                            <td class="datecreatedcss"> {{ category.date_created }}</td>
+                            <td>
+                                <form method="POST" action="{{ url_for('verwijder_categorie_main', category_id=category.category_id) }}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="button-delete">
+                                        <img src="../static/delete_button.png" alt="verwijder" class="delete-img">
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

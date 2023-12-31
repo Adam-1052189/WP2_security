@@ -87,6 +87,13 @@ def categories():
     categories = conn.execute(query10).fetchall()
     return categories
 
+def verwijder_categorie(category_id):
+    query11 = 'DELETE FROM categories WHERE category_id = ?'
+    conn = databaseinladen()
+    conn.execute(query11, (category_id, ))
+    conn.commit()
+    return True
+
 def aantalnotities():
     query5 = 'SELECT COUNT(note_id) FROM notes;'
     conn = databaseinladen()

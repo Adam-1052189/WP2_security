@@ -153,6 +153,16 @@ def showcategories():
     categories_list = DB.categories()
     return render_template('categories.html', categories_list=categories_list)
 
+@app.route('/verwijder_categorie/<int:category_id>', methods=['POST'])
+def verwijder_categorie_main(category_id):
+    if request.method == 'POST':
+        if DB.verwijder_categorie(category_id):
+            return redirect(url_for('categories'))
+        else:
+            return 'Categorie verwijderen mislukt'
+    else:
+        return redirect(url_for('categories'))
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
