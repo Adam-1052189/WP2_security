@@ -163,6 +163,19 @@ def verwijder_categorie_main(category_id):
     else:
         return redirect(url_for('categories'))
 
+@app.route('/bewerk_categorie_pagina/<int:category_id>')
+def bewerk_categorie_pagina(category_id):
+    category = DB.get_category_by_id(category_id)
+    return render_template('bewerk_categorie.html', category=category)
+
+@app.route('/bewerk_categorie/<int:category_id>', methods=['POST'])
+def bewerk_categorie(category_id):
+    if request.method == 'POST':
+        new_omschrijving = request.form.get('new_omschrijving')
+        DB.update_category(category_id, new_omschrijving)
+
+    return redirect(url_for('showcategories'))
+
 if __name__ == "__main__":
     app.debug = True
     app.run()

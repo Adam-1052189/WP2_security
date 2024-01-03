@@ -94,6 +94,24 @@ def verwijder_categorie(category_id):
     conn.commit()
     return True
 
+def get_category_by_id(category_id):
+    query = 'SELECT category_id, omschrijving, date_created FROM categories WHERE category_id = ?;'
+
+    with databaseinladen() as conn:
+        conn.row_factory = sqlite3.Row
+        category = conn.execute(query, (category_id,)).fetchone()
+
+    return category
+
+def update_category(category_id, new_omschrijving):
+    query = 'UPDATE categories SET omschrijving = ? WHERE category_id = ?;'
+    conn = databaseinladen()
+    try:
+        conn.execute(query, (new_omschrijving, category_id))
+        conn.commit()
+    finally:
+        conn.close()
+
 def aantalnotities():
     query5 = 'SELECT COUNT(note_id) FROM notes;'
     conn = databaseinladen()

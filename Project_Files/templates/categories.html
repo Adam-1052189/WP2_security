@@ -35,6 +35,9 @@
                             <td class="omschrijvingcss"> {{ category.omschrijving }}</td>
                             <td class="datecreatedcss"> {{ category.date_created }}</td>
                             <td>
+                            <a href="{{ url_for('bewerk_categorie_pagina', category_id=category.category_id) }}">Bewerken</a>
+                            </td>
+                            <td>
                                 <form method="POST" action="{{ url_for('verwijder_categorie_main', category_id=category.category_id) }}">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <button type="submit" class="button-delete">

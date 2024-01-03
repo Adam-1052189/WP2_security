@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bewerk Categorie</title>
+</head>
+<body>
+    <h1>Bewerk Categorie</h1>
+    <form method="POST" action="{{ url_for('bewerk_categorie', category_id=category.category_id) }}">
+        <label for="new_omschrijving">Nieuwe Omschrijving:</label>
+        <input type="text" id="new_omschrijving" name="new_omschrijving" value="{{ category.omschrijving }}" required>
+        <button type="submit">Opslaan</button>
+    </form>
+</body>
+</html>
