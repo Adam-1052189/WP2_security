@@ -31,9 +31,9 @@
                 <tbody>
                     {% for category in categories_list %}
                         <tr>
-                            <td class="categoryidcss">{{ category.category_id }}</td>
-                            <td class="omschrijvingcss"> {{ category.omschrijving }}</td>
-                            <td class="datecreatedcss"> {{ category.date_created }}</td>
+                            <td class="categorydata"> {{ category.category_id }}</td>
+                            <td> {{ category.omschrijving }}</td>
+                            <td> {{ category.date_created }}</td>
                             <td>
                             <a href="{{ url_for('bewerk_categorie_pagina', category_id=category.category_id) }}">Bewerken</a>
                             </td>

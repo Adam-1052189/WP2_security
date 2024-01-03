@@ -20,3 +20,31 @@
     width: 30px;
     height: 30px;
 }
+.label-new-omschrijving {
+    font-family: 'Nunito';
+}
+table {
+  width: 100%;
+}
+td {
+  width: 100px;
+  height: 50px;
+}
+.categoryidcss {
+    padding-left: 1px;
+}
+.omschrijvingcss {
+    padding-right: 15%;
+}
+.datecreatedcss {
+    padding-right: 12%;
+}
+th {
+    font-size: 19px;
+}
+.categorydata {
+    padding-left: 10%;
+}
+.datarijen {
+    border: 1px solid;
+}
