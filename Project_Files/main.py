@@ -82,6 +82,12 @@ def display_notes():
         return "page not found", 404
     return render_template('overzicht_notities.html', page=page, notes=paginated_notes, total_notes=total_notes, per_page=per_page, aantal_notities=aantal_notities)
 
+@app.route("/search", methods=['POST'])
+def search_notes():
+    zoekterm = request.form.get('zoekterm', '')
+    zoekresultaten = DB.zoek_notities(zoekterm)
+    return render_template('overzicht_notities.html', notes=zoekresultaten, zoekterm=zoekterm, page=1, total_notes=len(zoekresultaten), per_page=4, aantal_notities=len(zoekresultaten))
+
 #create notes
 @app.route('/create/', methods=('GET', 'POST'))
 def create():

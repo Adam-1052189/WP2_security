@@ -10,9 +10,9 @@
      {% include 'navbar2.html' %}
 
     <div class="search-container">
-            <form class="search-input" role="search">
-                <input class="form-controle" type="search" placeholder="Search">
-                <button class="button-search" type="submit">Search</button>
+            <form class="search-input" role="search" method="POST" action="{{ url_for('search_notes') }}">
+                <input class="form-controle" type="search" name="zoekterm" placeholder="Search">
+                <button class="button-search" type="submit">zoeken</button>
                 <a href="/create" class="button-nieuwe-notitie">Nieuwe Notitie</a>
                 <button class="button-Filter">Filter</button>
             </form>

@@ -43,6 +43,12 @@ def notities():
     notes = conn.execute(query2).fetchall()
     return notes
 
+def zoek_notities(zoekterm):
+    query12 = 'SELECT notes.note_id, notes.note, notes.title, notes.note_source, teachers.display_name, notes.date_created, categories.omschrijving  FROM notes INNER JOIN categories ON notes.category_id = categories.category_id INNER JOIN teachers ON teachers.teacher_id = notes.teacher_id WHERE notes.note LIKE ? OR notes.title LIKE ?;'
+    conn = databaseinladen()
+    resultaat = conn.execute(query12, ('%' + zoekterm + '%', '%' + zoekterm + '%')).fetchall()
+    return resultaat
+
 def get_categories():
     query = 'SELECT category_id, omschrijving FROM categories;'
     conn = databaseinladen()
