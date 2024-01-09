@@ -14,8 +14,17 @@
                 <input class="form-controle" type="search" name="zoekterm" placeholder="Search">
                 <button class="button-search" type="submit">zoeken</button>
                 <a href="/create" class="button-nieuwe-notitie">Nieuwe Notitie</a>
-                <button class="button-Filter">Filter</button>
             </form>
+            <form class="filter-form" method="POST" action="{{ url_for('filter_notes') }}">
+            <label for="category">Kies categorie:</label>
+            <select name="category" id="category">
+                <option value="">Categorie</option>
+                {% for category_id, category_omschrijving in categories_list %}
+                    <option value="{{ category_omschrijving }}">{{ category_omschrijving }}</option>
+                {% endfor %}
+            </select>
+        <button class="button-Filter" type="submit">Filter</button>
+    </form>
     </div>
 
 <a href="/adminpage" class="button-nieuwe-notitie">admin page</a>

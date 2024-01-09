@@ -78,15 +78,25 @@ def display_notes():
     paginated_notes = paginering(page, per_page, notes)
     aantal_notities = DB.aantalnotities()
     if not paginated_notes and page != 1:
-
         return "page not found", 404
-    return render_template('overzicht_notities.html', page=page, notes=paginated_notes, total_notes=total_notes, per_page=per_page, aantal_notities=aantal_notities)
+
+    categories_list = list(DB.get_categories())
+    return render_template('overzicht_notities.html', page=page, notes=paginated_notes, total_notes=total_notes,
+                           per_page=per_page, aantal_notities=aantal_notities, categories_list=categories_list)
 
 @app.route("/search", methods=['POST'])
 def search_notes():
     zoekterm = request.form.get('zoekterm', '')
     zoekresultaten = DB.zoek_notities(zoekterm)
     return render_template('overzicht_notities.html', notes=zoekresultaten, zoekterm=zoekterm, page=1, total_notes=len(zoekresultaten), per_page=4, aantal_notities=len(zoekresultaten))
+
+@app.route("/filter_notes", methods=['POST'])
+def filter_notes():
+    category_omschrijving = request.form.get('category')
+    filtered_notes = DB.filter_notities_op_categorie(category_omschrijving) if category_omschrijving else DB.notities()
+    categories_list = list(DB.get_categories())
+    return render_template('overzicht_notities.html', notes=filtered_notes, page=1, total_notes=len(filtered_notes),
+                           per_page=4, aantal_notities=len(filtered_notes), categories_list=categories_list)
 
 #create notes
 @app.route('/create/', methods=('GET', 'POST'))

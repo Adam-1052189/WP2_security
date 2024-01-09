@@ -49,6 +49,12 @@ def zoek_notities(zoekterm):
     resultaat = conn.execute(query12, ('%' + zoekterm + '%', '%' + zoekterm + '%')).fetchall()
     return resultaat
 
+def filter_notities_op_categorie(categorie):
+    query = 'SELECT notes.note_id, notes.note, notes.title, notes.note_source, teachers.display_name, notes.date_created, categories.omschrijving FROM notes INNER JOIN categories ON notes.category_id = categories.category_id INNER JOIN teachers ON teachers.teacher_id = notes.teacher_id WHERE categories.omschrijving = ?;'
+    conn = databaseinladen()
+    resultaat = conn.execute(query, (categorie,)).fetchall()
+    return resultaat
+
 def get_categories():
     query = 'SELECT category_id, omschrijving FROM categories;'
     conn = databaseinladen()
