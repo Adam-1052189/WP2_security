@@ -133,3 +133,9 @@ section p {
     width: 30px;
     height: 30px;
 }
+.selectieboxen-notities {
+    border: none;
+    padding-right: 50px;
+    position: absolute;
+    margin-left: -13px;
+}

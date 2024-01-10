@@ -24,14 +24,13 @@
                 {% endfor %}
             </select>
 
-            </select>
+            <fieldset class="selectieboxen-notities">
+                <label for="all_users">Notities van Iedereen</label>
+                <input type="checkbox" name="user_filter" value="all" id="all_users">
 
-            <label for="user_filter">Toon notities van:</label>
-            <select name="user_filter" id="user_filter">
-                <option value="all">Iedereen</option>
-                <option value="current_user">Mijn notities</option>
-            </select>
-
+                <label for="current_user">Mijn notities</label>
+                <input type="checkbox" name="user_filter" value="current_user" id="current_user">
+            </fieldset>
         <button class="button-Filter" type="submit">Filter</button>
     </form>
     </div>
