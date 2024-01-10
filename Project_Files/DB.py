@@ -55,6 +55,15 @@ def filter_notities_op_categorie(categorie):
     resultaat = conn.execute(query, (categorie,)).fetchall()
     return resultaat
 
+def filter_notities_op_gebruiker(teacher_id, own_notes=True):
+    if own_notes:
+        query = 'SELECT notes.note_id, notes.note, notes.title, notes.note_source, teachers.display_name, notes.date_created, categories.omschrijving FROM notes INNER JOIN categories ON notes.category_id = categories.category_id INNER JOIN teachers ON teachers.teacher_id = notes.teacher_id WHERE teachers.teacher_id = ?;'
+    else:
+        query = 'SELECT notes.note_id, notes.note, notes.title, notes.note_source, teachers.display_name, notes.date_created, categories.omschrijving FROM notes INNER JOIN categories ON notes.category_id = categories.category_id INNER JOIN teachers ON teachers.teacher_id = notes.teacher_id WHERE teachers.teacher_id != ?;'
+
+    conn = databaseinladen()
+    resultaat = conn.execute(query, (teacher_id,)).fetchall()
+    return resultaat
 def get_categories():
     query = 'SELECT category_id, omschrijving FROM categories;'
     conn = databaseinladen()

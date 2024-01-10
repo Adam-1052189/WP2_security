@@ -93,7 +93,15 @@ def search_notes():
 @app.route("/filter_notes", methods=['POST'])
 def filter_notes():
     category_omschrijving = request.form.get('category')
-    filtered_notes = DB.filter_notities_op_categorie(category_omschrijving) if category_omschrijving else DB.notities()
+    user_filter = request.form.get('user_filter')
+
+    if user_filter == 'current_user':
+        user_id = session.get('user')
+        filtered_notes = DB.filter_notities_op_gebruiker(user_id, own_notes=True)
+    else:
+        filtered_notes = DB.filter_notities_op_categorie(
+            category_omschrijving) if category_omschrijving else DB.notities()
+
     categories_list = list(DB.get_categories())
     return render_template('overzicht_notities.html', notes=filtered_notes, page=1, total_notes=len(filtered_notes),
                            per_page=4, aantal_notities=len(filtered_notes), categories_list=categories_list)

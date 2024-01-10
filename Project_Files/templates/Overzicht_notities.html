@@ -23,6 +23,15 @@
                     <option value="{{ category_omschrijving }}">{{ category_omschrijving }}</option>
                 {% endfor %}
             </select>
+
+            </select>
+
+            <label for="user_filter">Toon notities van:</label>
+            <select name="user_filter" id="user_filter">
+                <option value="all">Iedereen</option>
+                <option value="current_user">Mijn notities</option>
+            </select>
+
         <button class="button-Filter" type="submit">Filter</button>
     </form>
     </div>
