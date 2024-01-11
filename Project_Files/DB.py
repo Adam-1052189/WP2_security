@@ -182,3 +182,9 @@ def note(note_id):
     conn = databaseinladen()
     note = conn.execute(query2, (note_id,)).fetchone()
     return note
+
+def questions(note_id):
+    query = 'INSERT INTO questions (exam_question, date_created) VALUES (?,?)'
+    conn = databaseinladen()
+    question = conn.execute(query, (note_id)).fetchone()
+    return question

@@ -205,6 +205,12 @@ def see_note(note_id):
     note = DB.note(note_id)
     return render_template('see_note.html', note=note)
 
+@app.route('/generate_question/<int:note_id>', methods=['POST'])
+def generate_question(note_id):
+    generated_question = DB.questions(note_id)
+    note = DB.note(note_id)
+    return render_template('see_note.html', note=note, generated_question=generated_question)
+
 
 if __name__ == "__main__":
     app.debug = True

@@ -11,6 +11,17 @@
     <p>Categorie: {{ note[6] }}</p>
     <p>Leraar: {{ note[4] }}</p>
     <p>Bron: {{ note[3] }}</p>
+    <form method="POST" action="{{ url_for('generate_question', note_id=note[0]) }}">
+        <label for="questionType">Kies het type vraag:</label>
+        <select id="questionType" name="questionType">
+            <option value="open">Open vraag</option>
+            <option value="multiple_choice">Meerkeuzevraag</option>
+        </select>
+        <button type="submit">Vraag genereren</button>
+    </form>
+
+    {% if generated_question %}
+        <p>Generated Question: {{ generated_question }}</p>
+    {% endif %}
 </body>
 </html>
-
