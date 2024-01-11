@@ -200,9 +200,11 @@ def bewerk_categorie(category_id):
 
     return redirect(url_for('showcategories'))
 
-@app.route('/seenote/<int:note_id>', methods=('GET','POST'))
-def seenotes():
-    return render_template('edit_note.html')
+@app.route('/see_note/<int:note_id>' , methods=['GET'])
+def see_note(note_id):
+    note = DB.note(note_id)
+    return render_template('see_note.html', note=note)
+
 
 if __name__ == "__main__":
     app.debug = True

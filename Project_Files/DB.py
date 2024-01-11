@@ -95,6 +95,25 @@ def delete_gebruiker(teacher_id):
     conn.commit()
     return True
 
+def get_gebruker_id(teacher_id):
+    query = 'SELECT display_name, username, teacher_password, teacher_id FROM teachers; WHERE teacher_id=?;'
+    conn = databaseinladen()
+    cursor = conn.execute(query, (teacher_id, ))
+    gebruiker = cursor.fetchone()
+    return gebruiker
+
+def update_gebruiker(display_name, username, teacher_password, teacher_id):
+    conn = databaseinladen()
+    update_query = '''
+    UPDATE teachers
+    SET display_name=?, username=?, teacher_password=?
+    WHERE teacher_id=?
+    '''
+
+    conn.execute(update_query,(display_name, username, teacher_password, teacher_id))
+    conn.commit()
+
+
 def categoriesaanmaken(omschrijving):
     query4 = 'INSERT INTO categories (omschrijving) VALUES (?)'
     conn = databaseinladen()
@@ -158,3 +177,8 @@ def update_note(note_id,title,note,note_source,category_id):
     conn.execute(update_query,(title,note,note_source,category_id,note_id))
     conn.commit()
 
+def note(note_id):
+    query2 = 'SELECT notes.note_id, notes.note, notes.title, notes.note_source, teachers.display_name, notes.date_created, categories.omschrijving FROM notes INNER JOIN categories ON notes.category_id = categories.category_id INNER JOIN teachers ON teachers.teacher_id = notes.teacher_id WHERE notes.note_id=?;'
+    conn = databaseinladen()
+    note = conn.execute(query2, (note_id,)).fetchone()
+    return note
