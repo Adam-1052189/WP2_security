@@ -130,7 +130,7 @@ section p {
   margin-left: 2%;
   padding-top: 20px;
 }
-.button-probeer-nu {
+.button-log-in-einde-van-pagina {
   margin-top: 43px;
   background-color:  #3DBB57;
   border: none;
@@ -140,27 +140,11 @@ section p {
   height: 40px;
   font-family: 'Nunito';
   color: #FFFFFF;
-  padding: 0px 30px;
+  padding: 0px 50px;
   font-weight: bold;
   position: absolute;
   left: 4%;
   margin-right: 20%;
-}
-.button-boek-een-demonstratie {
-  margin-top: 43px;
-  position: relative;
-  background-color:  #3DBB57;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 10px;
-  height: 40px;
-  font-family: 'Nunito';
-  color: #FFFFFF;
-  padding: 0px 30px;
-  font-weight: bold;
-  position: absolute;
-  left: 25%;
 }
 .foto-apparaten {
   right: 2%;
