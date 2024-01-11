@@ -10,12 +10,29 @@
      {% include 'navbar2.html' %}
 
     <div class="search-container">
-            <form class="search-input" role="search">
-                <input class="form-controle" type="search" placeholder="Search">
-                <button class="button-search" type="submit">Search</button>
+            <form class="search-input" role="search" method="POST" action="{{ url_for('search_notes') }}">
+                <input class="form-controle" type="search" name="zoekterm" placeholder="Search">
+                <button class="button-search" type="submit">zoeken</button>
                 <a href="/create" class="button-nieuwe-notitie">Nieuwe Notitie</a>
-                <button class="button-Filter">Filter</button>
             </form>
+            <form class="filter-form" method="POST" action="{{ url_for('filter_notes') }}">
+            <label for="category">Kies categorie:</label>
+            <select name="category" id="category">
+                <option value="">Categorie</option>
+                {% for category_id, category_omschrijving in categories_list %}
+                    <option value="{{ category_omschrijving }}">{{ category_omschrijving }}</option>
+                {% endfor %}
+            </select>
+
+            <fieldset class="selectieboxen-notities">
+                <label for="all_users">Notities van Iedereen</label>
+                <input type="checkbox" name="user_filter" value="all" id="all_users">
+
+                <label for="current_user">Mijn notities</label>
+                <input type="checkbox" name="user_filter" value="current_user" id="current_user">
+            </fieldset>
+        <button class="button-Filter" type="submit">Filter</button>
+    </form>
     </div>
 
 <a href="/adminpage" class="button-nieuwe-notitie">admin page</a>
