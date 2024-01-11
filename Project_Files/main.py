@@ -165,10 +165,20 @@ def adminmenu():
     gebruikers = DB.adminscherm()
     return render_template('adminpage.html', gebruikers=gebruikers)
 
-@app.route('/bewerk_gebruiker/<int:teacher_id>')
-def bewerk_gebruiker(teacher_id):
-    teacher = DB.get_gebruker_id(teacher_id)
-    return render_template('bewerk_gebruiker.html', teacher=teacher)
+@app.route('/edit_gebruiker/<int:teacher_id>', methods=['GET', 'POST'])
+def edit_gebruiker(teacher_id):
+    gebruiker = DB.get_gebruiker_id(teacher_id)
+
+    if request.method == 'POST':
+        username = request.form['username']
+        teacher_password = request.form['teacher_password']
+        display_name = request.form['display_name']
+
+        DB.update_gebruiker(teacher_id, username, teacher_password, display_name)
+        return redirect(url_for('adminmenu'))
+
+    gebruiker = DB.get_teacher()
+    return render_template('bewerk_gebruiker.html',  gebruiker=gebruiker)
 
 @app.route('/categories/', methods=('GET','POST'))
 def categories():

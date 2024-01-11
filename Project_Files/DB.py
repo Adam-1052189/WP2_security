@@ -95,12 +95,15 @@ def delete_gebruiker(teacher_id):
     conn.commit()
     return True
 
-def get_gebruker_id(teacher_id):
-    query = 'SELECT display_name, username, teacher_password, teacher_id FROM teachers; WHERE teacher_id=?;'
-    conn = databaseinladen()
-    cursor = conn.execute(query, (teacher_id,))
-    gebruiker = cursor.fetchone()
-    return gebruiker
+
+def get_gebruiker_id(teacher_id):
+    query = 'SELECT display_name, username, teacher_password, teacher_id FROM teachers WHERE teacher_id=?;'
+
+    with databaseinladen() as conn:
+        conn.row_factory = sqlite3.Row
+        teacher = conn.execute(query, (teacher_id,)).fetchone()
+
+    return teacher
 
 def update_gebruiker(display_name, username, teacher_password, teacher_id):
     conn = databaseinladen()
