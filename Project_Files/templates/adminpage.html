@@ -30,7 +30,7 @@
             placeholder="Display naam"
             value="{{ display_name }}">
     <br>
-    <button type="submit">Toevoegen</button>
+    <button type="submit">Aanpassen</button>
 </form>
 
 {% block content %}
@@ -44,6 +44,9 @@
                 <button type="submit" class="button-delete">
                     <img src="../static/delete_button.png" alt="verwijder" class="delete-img">
                 </button>
+                <a href="{{ url_for('bewerk_gebruiker', teacher_id=gebruiker[3]) }}" class="button-edit">
+                            Bewerken
+                        </a>
                 <input type="hidden" name="teacher_id" value="{{ gebruiker[0] }}">
             </form>
             {% endfor %}

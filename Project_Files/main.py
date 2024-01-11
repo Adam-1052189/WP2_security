@@ -165,6 +165,11 @@ def adminmenu():
     gebruikers = DB.adminscherm()
     return render_template('adminpage.html', gebruikers=gebruikers)
 
+@app.route('/bewerk_gebruiker/<int:teacher_id>')
+def bewerk_gebruiker(teacher_id):
+    teacher = DB.get_gebruker_id(teacher_id)
+    return render_template('bewerk_gebruiker.html', teacher=teacher)
+
 @app.route('/categories/', methods=('GET','POST'))
 def categories():
     if request.method == 'POST':
