@@ -1,7 +1,10 @@
 from flask import Flask, render_template, redirect, url_for, request, session
 from functools import wraps
 import DB
+import sys
+sys.path.append('..')
 from flask_caching import Cache
+from lib.testgpt.testgpt import TestGPT
 
 
 app = Flask(__name__)
@@ -17,6 +20,19 @@ def paginering(page, per_page, notes):
     start = (page-1)*per_page
     end = start +per_page
     return notes[start:end]
+
+#VRAGEN GENEREREN 
+def open_gen(note):
+    API_key = 'super_secret'
+    test_gpt = TestGPT(API_key)
+    open_question = test_gpt.generate_open_question(note)
+    return open_question
+    
+def multiple_gen(note):
+    API_key = 'super_secret'
+    test_gpt = TestGPT(API_key)
+    mc_question = test_gpt.generate_multiple_choice_question(note)
+    return mc_question
 
 #homescreen
 @app.before_request
@@ -205,11 +221,13 @@ def see_note(note_id):
     note = DB.note(note_id)
     return render_template('see_note.html', note=note)
 
-@app.route('/generate_question/<int:note_id>', methods=['POST'])
+@app.route('/generate_question/<int:note_id>' , methods=['POST'])
 def generate_question(note_id):
-    generated_question = DB.questions(note_id)
     note = DB.note(note_id)
-    return render_template('see_note.html', note=note, generated_question=generated_question)
+    open_question = open_gen(note[-2])
+    multiple_choice_question = multiple_gen(note[-2])
+    return render_template('see_note.html', note=note, open_question=open_question, multiple_choice_question=multiple_choice_question)
+
 
 
 if __name__ == "__main__":
