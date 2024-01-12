@@ -42,7 +42,6 @@
                 <p>Gebruikersnaam: {{ gebruiker[1] }} </p>
                 <p>Wachtwoord: {{ gebruiker[2] }}</p>
                 <a href="{{ url_for('edit_gebruiker', teacher_id=gebruiker[3]) }}" class="button-edit">Bewerken</a>
-                <input type="hidden" name="teacher_id" value="{{ gebruiker[0] }}">
                 <button type="submit" class="button-delete">
                     <img src="../static/delete_button.png" alt="verwijder" class="delete-img">
                 </button>

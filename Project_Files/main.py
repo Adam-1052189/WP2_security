@@ -165,16 +165,21 @@ def adminmenu():
     gebruikers = DB.adminscherm()
     return render_template('adminpage.html', gebruikers=gebruikers)
 
-@app.route('/edit_gebruiker/<int:teacher_id>', methods=['GET', 'POST'])
+@app.route('/<int:teacher_id>/edit_gebruiker', methods=('GET', 'POST'))
 def edit_gebruiker(teacher_id):
-    teacher = DB.get_note_id(teacher_id)
+    teacher = DB.get_teacher_id(teacher_id)
 
     if request.method == 'POST':
         username = request.form['username']
         teacher_password = request.form['teacher_password']
         display_name = request.form['display_name']
 
-        DB.edit_gebruiker(teacher_id, username, teacher_password, display_name)
+        conn = DB.databaseinladen()
+        conn.execute('UPDATE teachers SET username = ?, display_name = ?, teacher_password = ?'
+                        'WHERE teacher_id = ?',
+                         (username, display_name, teacher_password, teacher_id))
+        conn.commit()
+        conn.close()
         return redirect(url_for('adminmenu'))
     return render_template('bewerk_gebruiker.html',  teacher=teacher)
 

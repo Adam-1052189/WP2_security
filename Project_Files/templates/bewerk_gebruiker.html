@@ -8,29 +8,32 @@
 <body>
 {% include 'navbar1.html' %}
 {% include 'navbar2.html' %}
+
+{% block content %}
     <h1>Bewerk Gebruiker</h1>
-<form class="gebruiker" method="post" action="/adminpage/">
-    <h1>Account aanmaken voor docenten</h1>
-    <br>
-    <label for= "username">Gebruikersnaam</label>
-    <br>
-    <input type="text" name="username" required
-            placeholder="Gebruikersnaam"
-            value="{{ username }}"> </input>
-    <br>
-    <label for= "teacher_password">Wachtwoord</label>
-    <br>
-    <input type="text" name="teacher_password" required
-            placeholder="Wachtwoord"
-            value="{{ teacher_password }}"> </input>
-    <br>
-    <label for= "display_name">Display naam</label>
-    <br>
-    <input type="text" name="display_name" required
-            placeholder="Display naam"
-            value="{{ display_name }}">
-    <br>
-    <button type="submit">Aanpassen</button>
-</form>
+    <form class="gebruiker" method="post">
+        <br>
+        <label for= "username">Gebruikersnaam</label>
+        <br>
+        <input type="text" name="username" required
+               placeholder="Gebruikersnaam"
+               value="{{ request.form['username'] }}"></input>
+        <br>
+        <label for= "teacher_password">Wachtwoord</label>
+        <br>
+        <input type="text" name="teacher_password" required
+               placeholder="Wachtwoord"
+               value="{{ request.form['teacher_password'] }}"></input>
+        <br>
+        <label for= "display_name">Display naam</label>
+        <br>
+        <input type="text" name="display_name" required
+               placeholder="Display naam"
+               value="{{ request.form['display_name'] }}"></input>
+        <br>
+        <button type="submit">Aanpassen</button>
+    </form>
+{% endblock %}
+
 </body>
 </html>
