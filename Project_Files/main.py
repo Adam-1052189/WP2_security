@@ -202,7 +202,7 @@ def bewerk_categorie(category_id):
     return redirect(url_for('showcategories'))
 def get_note_id(note_id):
     note= DB.get_note_id(note_id)
-    if note:
+    if note and len(note) >= 7:
         return {
     'title': note[2],
     'note': note[1],
