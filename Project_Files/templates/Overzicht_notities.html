@@ -39,7 +39,7 @@
 <a href="/categories/" class="button-nieuwe-notitie">categories</a>
 
 <a href="{{ url_for('download_alle_notities') }}" class="button-download-alle" download>
-    Download CSV
+    <img src="../static/download_alle_button.png" alt="Download alle notities" class="download-alle-img">
 </a>
 
 {% block content%}
@@ -55,7 +55,9 @@
                         <p>Bron: {{ note[3] }}</p>
                         <p>Aangemaakt op: {{ note[5] }}</p>
 
-                        <a href="{{ url_for('download_notitie', note_id=note[0]) }}" class="button-download" download> CSV </a>
+                        <a href="{{ url_for('download_notitie', note_id=note[0]) }}" class="button-download" download>
+                            <img src="../static/download_button.png" alt="Download alle notities" class="download-img">
+                        </a>
 
                         <button type="submit" class="button-delete">
                             <img src="../static/delete_button.png" alt="verwijder" class="delete-img">
