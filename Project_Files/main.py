@@ -97,7 +97,7 @@ def delete_note(note_id):
 def display_notes():
     notes = DB.notities()
     page = request.args.get('page', 1, type=int)
-    per_page = 4
+    per_page = 20
     total_notes = len(notes)
     paginated_notes = paginering(page, per_page, notes)
     aantal_notities = DB.aantalnotities()
