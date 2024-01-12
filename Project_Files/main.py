@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, session, Response
+from flask import Flask, render_template, redirect, url_for, request, session, Response, send_file
 from functools import wraps
 import DB
 from flask_caching import Cache
@@ -223,7 +223,8 @@ def download_notitie(note_id):
         csv_writer.writerow(['Titel', 'Inhoud', 'Bron ', 'Leraar', 'Categorie', 'Aangemaakt op:'])
         csv_writer.writerow([note['title'], note['note'], note['note_source'], note['teacher_id'], note['category_id'], note['date_created']])
         output.seek(0)
-        return Response(output, mimetype='text/csv', headers={'Content-Disposition': f'attachment;filename=note_{note_id}.csv'})
+
+        return send_file(output, mimetype='text/csv', as_attachment=True, download_name=f'note_{note_id}.csv')
     else:
         return 'Notitie kan niet gevonden worden', 404
 
