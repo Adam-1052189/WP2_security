@@ -1,4 +1,5 @@
 import sqlite3
+from flask import abort
 
 def databaseinladen():
     conn = sqlite3.connect('../databases/testgpt.db')
@@ -95,23 +96,15 @@ def delete_gebruiker(teacher_id):
     conn.commit()
     return True
 
-def get_gebruker_id(teacher_id):
-    query = 'SELECT display_name, username, teacher_password, teacher_id FROM teachers; WHERE teacher_id=?;'
+
+def get_teacher_id(teacher_id):
     conn = databaseinladen()
-    cursor = conn.execute(query, (teacher_id, ))
-    gebruiker = cursor.fetchone()
+    gebruiker = conn.execute('SELECT teacher_id, display_name, username, teacher_password FROM teachers '
+                             'WHERE teacher_id=?',(teacher_id,)).fetchone()
+    conn.close()
+    if gebruiker is None:
+        abort(404)
     return gebruiker
-
-def update_gebruiker(display_name, username, teacher_password, teacher_id):
-    conn = databaseinladen()
-    update_query = '''
-    UPDATE teachers
-    SET display_name=?, username=?, teacher_password=?
-    WHERE teacher_id=?
-    '''
-
-    conn.execute(update_query,(display_name, username, teacher_password, teacher_id))
-    conn.commit()
 
 
 def categoriesaanmaken(omschrijving):
