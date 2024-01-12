@@ -61,3 +61,13 @@ th {
     width: 30px;
     height: 30px;
 }
+div.categories-container table tbody tr:nth-child(even) {
+  background-color: white
+}
+
+div.categories-container table tbody tr:nth-child(odd) {
+  background-color: lightgray
+}
+.categories-container table {
+  border-collapse: collapse;
+}
