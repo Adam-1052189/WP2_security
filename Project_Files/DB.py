@@ -95,6 +95,25 @@ def delete_gebruiker(teacher_id):
     conn.commit()
     return True
 
+def get_gebruker_id(teacher_id):
+    query = 'SELECT display_name, username, teacher_password, teacher_id FROM teachers; WHERE teacher_id=?;'
+    conn = databaseinladen()
+    cursor = conn.execute(query, (teacher_id, ))
+    gebruiker = cursor.fetchone()
+    return gebruiker
+
+def update_gebruiker(display_name, username, teacher_password, teacher_id):
+    conn = databaseinladen()
+    update_query = '''
+    UPDATE teachers
+    SET display_name=?, username=?, teacher_password=?
+    WHERE teacher_id=?
+    '''
+
+    conn.execute(update_query,(display_name, username, teacher_password, teacher_id))
+    conn.commit()
+
+
 def categoriesaanmaken(omschrijving):
     query4 = 'INSERT INTO categories (omschrijving) VALUES (?)'
     conn = databaseinladen()
@@ -156,5 +175,38 @@ def update_note(note_id,title,note,note_source,category_id):
     '''
 
     conn.execute(update_query,(title,note,note_source,category_id,note_id))
+    conn.commit()
+
+def note(note_id):
+    query2 = '''SELECT notes.note_id, notes.note, notes.title, notes.note_source, teachers.display_name, notes.date_created, categories.omschrijving FROM notes 
+    INNER JOIN categories ON notes.category_id = categories.category_id 
+    INNER JOIN teachers ON teachers.teacher_id = notes.teacher_id 
+    WHERE notes.note_id=?;'''
+    conn = databaseinladen()
+    note_data = conn.execute(query2, (note_id,)).fetchone()
+
+    if note_data:
+        note_id, note, title, note_source, display_name, date_created, category_omschrijving = note_data
+
+        question_query = 'SELECT exam_question FROM questions WHERE note_id = ?;'
+        questions = conn.execute(question_query, (note_id,)).fetchall()
+
+        return {
+            'note_id': note_id,
+            'note': note,
+            'title': title,
+            'note_source': note_source,
+            'display_name': display_name,
+            'date_created': date_created,
+            'category_omschrijving': category_omschrijving,
+            'questions': questions
+        }
+    else:
+        return None
+
+def save_question(note_id, exam_question):
+    query = 'INSERT INTO questions (note_id, exam_question) VALUES (?,?)'
+    conn = databaseinladen()
+    conn.execute(query, (note_id, exam_question))
     conn.commit()
 

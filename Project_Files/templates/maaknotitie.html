@@ -1,7 +1,7 @@
 <head>
     <link rel="stylesheet" href="../static/maaknotitie.css" type="text/css">
     <title>Test-Correct</title>
-    <link rel="icon" type="image/x-icon" href="https://www.test-correct.nl/hubfs/3396b8f7-06dd-422d-984e-483680fc7791.png">
+    <link rel="icon" type="image/x-icon" href="https://welcome.test-correct.nl/img/icons/Logo-Test-Correct-recolored-icon-only.svg">
 </head>
 
  {% include 'navbar1.html' %}
@@ -13,13 +13,13 @@
     <br>
     <input type="text" name="title"
                placeholder="Titel"
-               value="{{ request.form['title'] }}"> </input>
+               value="{{ request.form['title'] }}" required> </input>
     <br>
     <br>
 
     <label for='note'>Inhoud notitie</label>
     <br>
-    <textarea name="note"
+    <textarea name="note" required
                   placeholder="Inhoud"
                   rows="15"
                   cols="60"
@@ -29,11 +29,10 @@
     <br>
     <input type="text" name="note_source"
                placeholder="note_source"
-               value="{{ request.form['note_source'] }}"> </input>
+               value="{{ request.form['note_source'] }}" required> </input>
     <br>
     <br>
-    <select name="categorie">
-        <option>Kies categorie</option>
+    <select name="categorie" required>
         {% for categorie in categories %}
         <option value="{{ categorie[0] }} ">{{ categorie[1] }}</option>
         {% endfor %}

@@ -1,11 +1,17 @@
 from flask import Flask, render_template, redirect, url_for, request, session
 from functools import wraps
 import DB
+import sys
+sys.path.append('..')
 from flask_caching import Cache
+from lib.testgpt.testgpt import TestGPT
 
+apikey = 'API KEY HERE'
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret key'
+app.config['SECRET_KEY'] = 'secret_key'
+
+
 
 cache = Cache(app)
 notes = DB.notities()
@@ -17,6 +23,19 @@ def paginering(page, per_page, notes):
     start = (page-1)*per_page
     end = start +per_page
     return notes[start:end]
+
+#VRAGEN GENEREREN 
+def open_gen(note):
+    API_key = apikey
+    test_gpt = TestGPT(API_key)
+    open_question = test_gpt.generate_open_question(note)
+    return open_question
+    
+def multiple_gen(note):
+    API_key = apikey
+    test_gpt = TestGPT(API_key)
+    mc_question = test_gpt.generate_multiple_choice_question(note)
+    return mc_question
 
 #homescreen
 @app.before_request
@@ -199,6 +218,32 @@ def bewerk_categorie(category_id):
         DB.update_category(category_id, new_omschrijving)
 
     return redirect(url_for('showcategories'))
+
+@app.route('/see_note/<int:note_id>' , methods=['GET'])
+def see_note(note_id):
+    note = DB.note(note_id)
+    print("Note:", note)
+    print("Note Length:", len(note))
+
+    return render_template('see_note.html', note=note)
+
+@app.route('/generate_question/<int:note_id>' , methods=['POST'])
+def generate_question(note_id):
+    note = DB.note(note_id)
+    question_type = request.form.get('questionType')
+    open_question = None  
+    multiple_choice_question = None
+
+    if question_type == 'open':
+        open_question = open_gen(note['note'])
+        DB.save_question(note_id, open_question)
+    
+    elif question_type == 'multiple_choice':
+        multiple_choice_question = multiple_gen(note['note'])
+        DB.save_question(note_id, multiple_choice_question)
+    return render_template('see_note.html', note=note, open_question=open_question, multiple_choice_question=multiple_choice_question)
+
+
 
 if __name__ == "__main__":
     app.debug = True

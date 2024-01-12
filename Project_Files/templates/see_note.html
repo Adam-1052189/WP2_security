@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ note['title'] }}</title>
+</head>
+<body>
+    {% include 'navbar1.html' %}
+    {% include 'navbar2.html' %}
+    <h3>Titel: {{ note['title'] }}</h3>
+    <p>Inhoud: {{ note['note'] }} </p>
+    <p>Categorie: {{ note['category_omschrijving'] }}</p>
+    <p>Leraar: {{ note['display_name'] }}</p>
+    <p>Bron: {{ note['note_source'] }}</p>
+
+    {% if note['questions'] %}
+        <h4>Vragen:</h4>
+        <ul>
+            {% for question in note['questions'] %}
+                <li>{{ question[0] }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('generate_question', note_id=note['note_id']) }}">
+        <input type="hidden" name="note_id" value="{{ note['note_id'] }}">
+        <label for="questionType">Kies het type vraag:</label>
+        <select id="questionType" name="questionType">
+            <option value="open">Open vraag</option>
+            <option value="multiple_choice">Meerkeuzevraag</option>
+        </select>
+        <button type="submit">Vraag genereren</button>
+    </form>
+
+    {% if open_question is defined %}
+        <p>Open Question: {{ open_question }}</p>
+    {% endif %}
+
+    {% if multiple_choice_question is defined %}
+        <p>Multiple Choice Question: {{ multiple_choice_question }}</p>
+    {% endif %}
+</body>
+</html>
