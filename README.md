@@ -33,4 +33,33 @@ https://www.digitalocean.com/community/tutorials/how-to-use-web-forms-in-a-flask
 
 
 Bronvermelding (Quinten)
+Algemene info over website bouwen met DB:
+https://www.youtube.com/watch?v=dam0GPOAvVI
+https://www.youtube.com/watch?v=kng-mJJby8g&t=303s
+
+
+CSS tutorials:
+https://www.youtube.com/watch?v=1PnVor36_40
+https://www.w3schools.com/css/tryit.asp?filename=trycss_default
+https://www.youtube.com/watch?v=jEuvbVVkcT0
+
+
+Navbar die je kan aanroepen op elke pagina:
+https://stackoverflow.com/questions/32567100/add-a-nav-bar-to-all-templates
+https://dev.to/brunooliveira/flask-series-part-9-adding-a-navbar-by-using-template-inheritance-2e5o
+
+aanmaken van forms:
 https://www.digitalocean.com/community/tutorials/how-to-use-web-forms-in-a-flask-application
+
+Dingen bewerken en updaten database:
+https://www.youtube.com/watch?v=4EJwK56pE1Y
+https://www.youtube.com/watch?v=w_VHabMAM1c&t=189s
+https://www.youtube.com/watch?v=u1j-_kDc6g0&t=187s
+https://www.youtube.com/watch?v=1nxzOrLWiic&t=4s
+
+
+Verdere hulpmiddelen:
+
+ChatGPT 
+https://www.w3schools.com/css/css_editor.asp
+https://www.w3schools.com/howto/howto_js_topnav.asp
