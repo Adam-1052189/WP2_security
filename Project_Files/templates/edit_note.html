@@ -14,7 +14,7 @@
     <br>
     <input type="text" name="title"
                placeholder="Titel"
-               value="{{ note [2] }}}">
+               value="{{ note [1] }}">
     <br>
     <br>
 
@@ -23,7 +23,7 @@
     <textarea name="note"
               placeholder="Inhoud"
               row="15"
-              cols="60"> {{ note [1] }}</textarea>
+              cols="60"> {{ note [2] }}</textarea>
     <br>
     <label for="note_source">Bron</label>
     <br>
@@ -34,8 +34,8 @@
     <br>
     <label for="categories"> Categorieën</label>
     <br>
-    <select name="categorie">
-        <option>Kies categorie</option>
+    <select name="categorie" required>
+        <label for="category">Kies categorie:</label>
         {% for categorie in categories %}
             <option value="{{ categorie[0] }}" {% if categorie[0] == note[6] %} selected {% endif %}>{{ categorie[1] }}</option>
         {% endfor %}}

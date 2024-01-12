@@ -8,13 +8,23 @@
 <body>
     {% include 'navbar1.html' %}
     {% include 'navbar2.html' %}
-    <h3>Titel: {{ note[2] }}</h3>
-    <p>Inhoud: {{ note[1] }} </p>
-    <p>Categorie: {{ note[6] }}</p>
-    <p>Leraar: {{ note[4] }}</p>
-    <p>Bron: {{ note[3] }}</p>
-    <form method="POST" action="{{ url_for('generate_question', note_id=note[0]) }}">
-        <input type="hidden" name="note_id" value="{{ note[0] }}">
+    <h3>Titel: {{ note['title'] }}</h3>
+    <p>Inhoud: {{ note['note'] }} </p>
+    <p>Categorie: {{ note['category_omschrijving'] }}</p>
+    <p>Leraar: {{ note['display_name'] }}</p>
+    <p>Bron: {{ note['note_source'] }}</p>
+
+    {% if note['questions'] %}
+        <h4>Vragen:</h4>
+        <ul>
+            {% for question in note['questions'] %}
+                <li>{{ question[0] }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('generate_question', note_id=note['note_id']) }}">
+        <input type="hidden" name="note_id" value="{{ note['note_id'] }}">
         <label for="questionType">Kies het type vraag:</label>
         <select id="questionType" name="questionType">
             <option value="open">Open vraag</option>
@@ -23,12 +33,12 @@
         <button type="submit">Vraag genereren</button>
     </form>
 
-    {% if open_question %}
-    <p>Open Question: {{ open_question }}</p>
+    {% if open_question is defined %}
+        <p>Open Question: {{ open_question }}</p>
     {% endif %}
 
-    {% if multiple_choice_question %}
-    <p>Multiple Choice Question: {{ multiple_choice_question }}</p>
+    {% if multiple_choice_question is defined %}
+        <p>Multiple Choice Question: {{ multiple_choice_question }}</p>
     {% endif %}
 </body>
 </html>

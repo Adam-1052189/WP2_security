@@ -6,9 +6,12 @@ sys.path.append('..')
 from flask_caching import Cache
 from lib.testgpt.testgpt import TestGPT
 
+apikey = 'API KEY HERE'
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret key'
+app.config['SECRET_KEY'] = 'secret_key'
+
+
 
 cache = Cache(app)
 notes = DB.notities()
@@ -23,13 +26,13 @@ def paginering(page, per_page, notes):
 
 #VRAGEN GENEREREN 
 def open_gen(note):
-    API_key = 'super_secret'
+    API_key = apikey
     test_gpt = TestGPT(API_key)
     open_question = test_gpt.generate_open_question(note)
     return open_question
     
 def multiple_gen(note):
-    API_key = 'super_secret'
+    API_key = apikey
     test_gpt = TestGPT(API_key)
     mc_question = test_gpt.generate_multiple_choice_question(note)
     return mc_question
@@ -219,13 +222,25 @@ def bewerk_categorie(category_id):
 @app.route('/see_note/<int:note_id>' , methods=['GET'])
 def see_note(note_id):
     note = DB.note(note_id)
+    print("Note:", note)
+    print("Note Length:", len(note))
+
     return render_template('see_note.html', note=note)
 
 @app.route('/generate_question/<int:note_id>' , methods=['POST'])
 def generate_question(note_id):
     note = DB.note(note_id)
-    open_question = open_gen(note[-2])
-    multiple_choice_question = multiple_gen(note[-2])
+    question_type = request.form.get('questionType')
+    open_question = None  
+    multiple_choice_question = None
+
+    if question_type == 'open':
+        open_question = open_gen(note['note'])
+        DB.save_question(note_id, open_question)
+    
+    elif question_type == 'multiple_choice':
+        multiple_choice_question = multiple_gen(note['note'])
+        DB.save_question(note_id, multiple_choice_question)
     return render_template('see_note.html', note=note, open_question=open_question, multiple_choice_question=multiple_choice_question)
 
 

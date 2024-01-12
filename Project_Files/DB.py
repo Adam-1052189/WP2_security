@@ -178,13 +178,35 @@ def update_note(note_id,title,note,note_source,category_id):
     conn.commit()
 
 def note(note_id):
-    query2 = 'SELECT notes.note_id, notes.note, notes.title, notes.note_source, teachers.display_name, notes.date_created, categories.omschrijving FROM notes INNER JOIN categories ON notes.category_id = categories.category_id INNER JOIN teachers ON teachers.teacher_id = notes.teacher_id WHERE notes.note_id=?;'
+    query2 = '''SELECT notes.note_id, notes.note, notes.title, notes.note_source, teachers.display_name, notes.date_created, categories.omschrijving FROM notes 
+    INNER JOIN categories ON notes.category_id = categories.category_id 
+    INNER JOIN teachers ON teachers.teacher_id = notes.teacher_id 
+    WHERE notes.note_id=?;'''
     conn = databaseinladen()
-    note = conn.execute(query2, (note_id,)).fetchone()
-    return note
+    note_data = conn.execute(query2, (note_id,)).fetchone()
 
-def questions(note_id):
-    query = 'INSERT INTO questions (exam_question, date_created) VALUES (?,?)'
+    if note_data:
+        note_id, note, title, note_source, display_name, date_created, category_omschrijving = note_data
+
+        question_query = 'SELECT exam_question FROM questions WHERE note_id = ?;'
+        questions = conn.execute(question_query, (note_id,)).fetchall()
+
+        return {
+            'note_id': note_id,
+            'note': note,
+            'title': title,
+            'note_source': note_source,
+            'display_name': display_name,
+            'date_created': date_created,
+            'category_omschrijving': category_omschrijving,
+            'questions': questions
+        }
+    else:
+        return None
+
+def save_question(note_id, exam_question):
+    query = 'INSERT INTO questions (note_id, exam_question) VALUES (?,?)'
     conn = databaseinladen()
-    question = conn.execute(query, (note_id)).fetchone()
-    return question
+    conn.execute(query, (note_id, exam_question))
+    conn.commit()
+
