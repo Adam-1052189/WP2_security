@@ -38,6 +38,10 @@
 <a href="/adminpage" class="button-nieuwe-notitie">admin page</a>
 <a href="/categories/" class="button-nieuwe-notitie">categories</a>
 
+<a href="{{ url_for('download_alle_notities') }}" class="button-download-alle" download>
+    Download CSV
+</a>
+
 {% block content%}
     {% if notes %}
         <div class="notes-container">
@@ -51,6 +55,8 @@
                         <p>Bron: {{ note[3] }}</p>
                         <p>Aangemaakt op: {{ note[5] }}</p>
 
+                        <a href="{{ url_for('download_notitie', note_id=note[0]) }}" class="button-download" download> CSV </a>
+
                         <button type="submit" class="button-delete">
                             <img src="../static/delete_button.png" alt="verwijder" class="delete-img">
                         </button>
@@ -61,6 +67,8 @@
                         <input type="hidden" name="note_id" value="{{ note[0] }}">
                     </form>
                 {% endfor %}
+            </div>
+
             {% if page > 1 %}
                 <a href="?page={{page-1}}" >Vorige pagina </a>
             {% endif %}

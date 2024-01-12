@@ -1,8 +1,9 @@
-from flask import Flask, render_template, redirect, url_for, request, session
+from flask import Flask, render_template, redirect, url_for, request, session, Response
 from functools import wraps
 import DB
 from flask_caching import Cache
-
+import csv
+from io import StringIO
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret key'
@@ -199,6 +200,48 @@ def bewerk_categorie(category_id):
         DB.update_category(category_id, new_omschrijving)
 
     return redirect(url_for('showcategories'))
+def get_note_id(note_id):
+    note= DB.get_note_id(note_id)
+    if note:
+        return {
+    'title': note[2],
+    'note': note[1],
+    'note_source': note[3],
+    'teacher_id': note[4],
+    'category_id': note[6],
+    'date_created': note[5],}
+    else:
+        return None
+
+
+@app.route('/download_notitie/<int:note_id>')
+def download_notitie(note_id):
+    note = get_note_id(note_id)
+    if note:
+        output = StringIO()
+        csv_writer = csv.writer(output)
+        csv_writer.writerow(['Titel', 'Inhoud', 'Bron ', 'Leraar', 'Categorie', 'Aangemaakt op:'])
+        csv_writer.writerow([note['title'], note['note'], note['note_source'], note['teacher_id'], note['category_id'], note['date_created']])
+        output.seek(0)
+        return Response(output, mimetype='text/csv', headers={'Content-Disposition': f'attachment;filename=note_{note_id}.csv'})
+    else:
+        return 'Notitie kan niet gevonden worden', 404
+
+@app.route('/download_alle_notities')
+def download_alle_notities():
+    notes= DB.notities()
+    if notes:
+        output = StringIO()
+        csv_writer = csv.writer(output)
+        csv_writer.writerow(['Titel', 'Inhoud', 'Bron', 'Leraar', 'Categorie', 'Aangemaakt op:'])
+        for note in notes:
+            csv_writer.writerow([note[2], note[1], note[3], note[4], note[6], note[5]])
+        output.seek(0)
+        return Response(output, mimetype='text/csv',
+                        headers={'Content-Disposition': f'attachment;filename=alle_notities.csv'})
+    else:
+        return 'Notities kunnen niet gevonden worden', 404
+
 
 if __name__ == "__main__":
     app.debug = True
