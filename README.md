@@ -3,6 +3,9 @@ Je kan inloggen als Admin met de naam en wachtwoord: ''niels'' , mocht je willen
 
 Om een virtual environment aan te maken. Moet je de command: python -m venv <name_of_virtual_environment> gebruiken. Na het aanmaken run je Activate.ps1, dit bestand moet telkens gerund worden als je je code wilt aanpassen zodat je altijd in je venv werkt. 
 Bij het aanmaken van een Virtual Environment moet je de requirements aanklikken zodat je IDE die gelijk mee-download en alles dan werkt naar behoren.
+Om de requirements te installeren voer je de actie pip install -r .\requirements.txt
+
+*Stel de 1e keer werkt niet, raden wij je aan om de requirements nogmaals te installeren.
 
 Om de site te runnen moet je main.py starten/runnen en de API key erin verwerken. De plek waar je de API key kan invoeren staat bovenaan in de main.py file. Het staat aangegeven met 'API key HERE', niet te missen 
 
