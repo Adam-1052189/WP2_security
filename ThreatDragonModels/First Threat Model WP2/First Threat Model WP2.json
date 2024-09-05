@@ -1,0 +1,26 @@
+{
+  "version": "2.2.0",
+  "summary": {
+    "title": "First Threat Model WP2",
+    "owner": "Adam Barendregt",
+    "description": "",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [
+      {
+        "name": "Niels van Roosmalen"
+      },
+      {
+        "name": "Quinten van der Vlies"
+      },
+      {
+        "name": "Micha Schaaij"
+      }
+    ],
+    "diagrams": [],
+    "diagramTop": 2,
+    "reviewer": "De docenten van WP2",
+    "threatTop": 0
+  }
+}
