@@ -18,8 +18,18 @@
         "name": "Micha Schaaij"
       }
     ],
-    "diagrams": [],
-    "diagramTop": 4,
+    "diagrams": [
+      {
+        "id": 4,
+        "title": "New STRIDE diagram",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": []
+      }
+    ],
+    "diagramTop": 5,
     "reviewer": "The teachers from WP2",
     "threatTop": 0
   }
