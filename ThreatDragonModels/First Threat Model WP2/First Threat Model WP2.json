@@ -3,7 +3,7 @@
   "summary": {
     "title": "First Threat Model WP2",
     "owner": "Adam Barendregt",
-    "description": "",
+    "description": "First model for WP2 Security",
     "id": 0
   },
   "detail": {
@@ -20,7 +20,7 @@
     ],
     "diagrams": [],
     "diagramTop": 4,
-    "reviewer": "De docenten van WP2",
+    "reviewer": "The teachers from WP2",
     "threatTop": 0
   }
 }
