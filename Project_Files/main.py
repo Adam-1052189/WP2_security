@@ -10,6 +10,7 @@ from lib.testgpt.testgpt import TestGPT
 apikey = 'API KEY HERE'
 
 import csv
+import bcrypt
 from io import StringIO
 
 
@@ -185,7 +186,8 @@ def adminmenu():
         username = request.form['username']
         teacher_password = request.form['teacher_password']
         display_name = request.form['display_name']
-        DB.adminmenu(username, teacher_password, display_name)
+        hashed_password = bcrypt.hashpw(teacher_password.encode('utf-8'), bcrypt.gensalt())
+        DB.adminmenu(username, hashed_password, display_name)  # Pass the hashed password
     gebruikers = DB.adminscherm()
     return render_template('adminpage.html', gebruikers=gebruikers)
 
@@ -197,11 +199,12 @@ def edit_gebruiker(teacher_id):
         username = request.form['username']
         teacher_password = request.form['teacher_password']
         display_name = request.form['display_name']
+        hashed_password = bcrypt.hashpw(teacher_password.encode('utf-8'), bcrypt.gensalt())
 
         conn = DB.databaseinladen()
         conn.execute('UPDATE teachers SET username = ?, display_name = ?, teacher_password = ?'
                         'WHERE teacher_id = ?',
-                         (username, display_name, teacher_password, teacher_id))
+                         (username, display_name, hashed_password, teacher_id))  # Use the hashed password
         conn.commit()
         conn.close()
         return redirect(url_for('adminmenu'))
