@@ -3,3 +3,6 @@ flask
 Flask
 flask_caching
 Flask-Bcrypt==1.0.1
+anyio>=4.4.0 # not directly required, pinned by Snyk to avoid a vulnerability
+werkzeug>=3.0.3 # not directly required, pinned by Snyk to avoid a vulnerability
+zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
