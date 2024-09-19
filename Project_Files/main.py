@@ -4,6 +4,7 @@ import DB
 import sys
 sys.path.append('..')
 from flask_caching import Cache
+from flask_wtf.csrf import CSRFProtect
 
 from lib.testgpt.testgpt import TestGPT
 
@@ -12,10 +13,12 @@ apikey = 'API KEY HERE'
 import csv
 import bcrypt
 from io import StringIO
-
+from forms import LoginForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret_key'
+app.config['SESSION_TYPE'] = 'filesystem'
+csrf = CSRFProtect(app)
 
 
 
@@ -59,19 +62,19 @@ def home():
 #login screen
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['teacher_password']
-
-        user = DB.Login(username, password)
-        if user:
+    form = LoginForm()
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+        user_id = DB.Login(username, password)
+        if user_id:
+            user = DB.get_user_by_username(username)
             session["user"] = user
-            print(user)
             return redirect(url_for("display_notes"))
         else:
             error = 'Invalid username or password. Please try again.'
-            return render_template('login_page.html', error=error)
-    return render_template('login_page.html')
+            return render_template('login_page.html', form=form, error=error)
+    return render_template('login_page.html', form=form)
 
 #logout
 @app.route("/logout")
@@ -190,6 +193,13 @@ def adminmenu():
         DB.adminmenu(username, hashed_password, display_name)  # Pass the hashed password
     gebruikers = DB.adminscherm()
     return render_template('adminpage.html', gebruikers=gebruikers)
+
+@app.route("/admin")
+def admin():
+    if "user" in session and session["user"]["is_admin"]:
+        return render_template("admin_page.html")
+    else:
+        return redirect(url_for("login"))
 
 @app.route('/<int:teacher_id>/edit_gebruiker', methods=('GET', 'POST'))
 def edit_gebruiker(teacher_id):

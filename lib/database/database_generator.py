@@ -1,5 +1,6 @@
 import sqlite3
 from pathlib import Path
+import bcrypt
 
 
 class WP2DatabaseGenerator:
@@ -75,7 +76,7 @@ class WP2DatabaseGenerator:
     def hash_password_for_DB(self, password):
         salt = bcrypt.gensalt()
         password_hash = bcrypt.hashpw(password.encode('utf-8'), salt)
-        return password_hash
+        return password_hash.decode('utf-8')
 
     def add_teacher(self, display_name, username, password, is_admin=0):
         hashed_password = self.hash_password_for_DB(password)
@@ -90,8 +91,8 @@ class WP2DatabaseGenerator:
 
     def insert_admin_user(self):
         teachers = [
-            ("Gerard van Kruining", "krugw", "geheim", 1),
-            ("Diederik de Vries", "vried", "geheimer", 0),
+            ("Gerard van Kruining", "krugw", self.hash_password_for_DB("geheim"), 1),
+            ("Diederik de Vries", "vried", self.hash_password_for_DB("geheimer"), 0),
         ]
         insert_statement = "INSERT INTO teachers (display_name, username, teacher_password, is_admin) VALUES (?, ?, ?, ?);"
         self.__execute_many_transaction_statement(insert_statement, teachers)

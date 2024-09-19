@@ -1,9 +1,24 @@
 import sqlite3
 from flask import abort
+import bcrypt
 
 def databaseinladen():
     conn = sqlite3.connect('../databases/testgpt.db')
     return conn
+
+def get_user_by_username(username):
+    query = 'SELECT username, teacher_password, teacher_id FROM teachers WHERE username=?;'
+    conn = databaseinladen()
+    cursor = conn.execute(query, (username,))
+    user = cursor.fetchone()
+    conn.close()
+    if user:
+        return {
+            'username': user[0],
+            'teacher_password': user[1],
+            'teacher_id': user[2]
+        }
+    return None
 
 def delete(note_id):
     delete_query = 'DELETE FROM notes WHERE note_id = ?'
@@ -14,13 +29,10 @@ def delete(note_id):
 
 
 def Login(username, password):
-    query = 'SELECT username, teacher_password, teacher_id FROM teachers WHERE username=? AND teacher_password=?;'
-    conn = databaseinladen()
-    cursor = conn.execute(query, (username, password))
-    user = cursor.fetchone()
-    if user is None:
-        return False
-    return user[2]
+    user = get_user_by_username(username)
+    if user and bcrypt.checkpw(password.encode('utf-8'), user['teacher_password'].encode('utf-8')):
+        return user['teacher_id']
+    return False
 
 def check_admin(teacher_id):
     print(teacher_id)
