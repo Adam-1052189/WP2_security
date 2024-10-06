@@ -4,3 +4,5 @@ Flask
 flask_caching
 Flask-Bcrypt==1.0.1
 Flask-WTF==1.2.1
+pyotp==2.6.0
+qrcode[pil]==7.3.1

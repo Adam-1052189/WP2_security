@@ -215,3 +215,9 @@ def save_question(note_id, exam_question):
     conn.execute(query, (note_id, exam_question))
     conn.commit()
 
+
+def update_user_secret(user_id, secret):
+    conn = databaseinladen()
+    conn.execute('UPDATE users SET secret = ? WHERE id = ?', (secret, user_id))
+    conn.commit()
+    conn.close()

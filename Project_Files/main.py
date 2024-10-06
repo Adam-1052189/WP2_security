@@ -12,7 +12,10 @@ apikey = 'API KEY HERE'
 
 import csv
 import bcrypt
+import pyotp
+import qrcode
 from io import StringIO
+from flask import send_file
 from forms import LoginForm
 
 app = Flask(__name__)
@@ -59,6 +62,26 @@ def check_inlog():
 def home():
     return render_template('homepage.html')
 
+@app.route('/qrcode')
+def qrcode():
+    user = session.get('user')
+    if not user:
+        return redirect(url_for('login'))
+
+    secret = user.get('secret')
+    if not secret:
+        secret = pyotp.random_base32()
+        DB.update_user_secret(user['id'], secret)
+        user['secret'] = secret
+        session['user'] = user
+
+    otp_uri = pyotp.totp.TOTP(secret).provisioning_uri(name=user['username'], issuer_name='WP2_SECURITY')
+    img = qrcode.make(otp_uri)
+    buf = BytesIO()
+    img.save(buf)
+    buf.seek(0)
+    return send_file(buf, mimetype='image/png')
+
 #login screen
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -70,11 +93,31 @@ def login():
         if user_id:
             user = DB.get_user_by_username(username)
             session["user"] = user
-            return redirect(url_for("display_notes"))
+            return redirect(url_for("verify_2fa"))
         else:
             error = 'Invalid username or password. Please try again.'
             return render_template('login_page.html', form=form, error=error)
     return render_template('login_page.html', form=form)
+
+@app.route("/verify_2fa", methods=['GET', 'POST'])
+def verify_2fa():
+    user = session.get('user')
+    if not user:
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        token = request.form['token']
+        totp = pyotp.TOTP(user['secret'])
+        if totp.verify(token):
+            session['2fa'] = True
+            return redirect(url_for('display_notes'))
+        else:
+            error = 'Invalid 2FA token. Please try again.'
+            return render_template('verify_2fa.html', error=error)
+
+    return render_template('verify_2fa.html')
+
+
 
 #logout
 @app.route("/logout")
